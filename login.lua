@@ -22,8 +22,6 @@ local scene = composer.newScene()
 local localGroup = display.newGroup()
 
 local function moveScenes()
-	--passwordBox:removeSelf()
-	--usernameBox:removeSelf()
 	composer.gotoScene("signedIn", {effect = "fade", time = 3000,})
 end
 
@@ -32,12 +30,17 @@ function scene:create( event )
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
 	local text1 = display.newText("Username:",xCenter/2-200,yCenter/4+250,nil,48)
 	local text2 = display.newText("Password:",xCenter/2-200,yCenter/4+350,nil,48)
-	local usernameBox = native.newTextField( xCenter/2+100, yCenter/4+250, xCenter/2.5, 75)
+	usernameBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
 	usernameBox.inputType = "default"
-	local passwordBox = native.newTextField( xCenter/2+100, yCenter/4+350, xCenter/2.5, 75)
+	usernameBox.size = "10"
+	usernameBox.text = "Username"
+	passwordBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+350, xCenter/2, 100)
 	passwordBox.inputType = "default"
+	passwordBox.size = "10"
+	passwordBox.text = "Password"
+	passwordBox.isSecure = true
 
--- Create the widget
+
 local submit = widget.newButton
 {
     label = "Submit",

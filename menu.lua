@@ -27,8 +27,8 @@ local localGroup = display.newGroup()
 function scene:create( event )
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
 	localGroup:insert(nerf)
-	local message = display.newText("We Like to Have Fun Here",xCenter/2,yCenter/2,nil,54)
-	message:setFillColor(0,0,1)
+	local message = display.newText("We Like to Have Fun Here",xCenter/2,yCenter/2,nil,60)
+	message:setFillColor(1,1,1)
 	localGroup:insert(message)
 
 	local function helpFunction()
@@ -40,21 +40,24 @@ function scene:create( event )
 	local tabButtons = {
 	    {
 	        label = "Main Menu",
-	        size = 32,
+	        size = 36,
 	        id = "tab1",
 	        selected = true,
+	        labelYOffset = -25,
 	        onPress = function() composer.gotoScene( "menu" ); end,
 	    },
 	    {
 	        label = "Login",
-	        size = 32,
+	        size = 36,
 	        id = "tab2",
+	        labelYOffset = -25,
 	        onPress = function() composer.gotoScene( "login" ); end,
 	    },
 	    {
 	        label = "Register",
-	        size = 32,
+	        size = 36,
 	        id = "tab3",
+	        labelYOffset = -25,
 	        onPress = function() composer.gotoScene( "login" ); end,
 	    },
 	}
@@ -63,8 +66,9 @@ function scene:create( event )
 	-- Create the widget
 	local tabBar = widget.newTabBar
 	{
-	    top = yCenter-52,
+	    top = yCenter-100,
 	    width = xCenter,
+	    height = 100,
 	    buttons = tabButtons
 	}	
 

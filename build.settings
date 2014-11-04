@@ -1,0 +1,9 @@
+-- build.settings for project: FinalNoName
+settings =
+{
+    orientation =
+    {
+        default = "portrait",  --initial launch orientation
+        supported = {portrait},  --table of allowed options for auto-orientation
+    },
+}

@@ -25,11 +25,19 @@ local function moveScenes()
 	composer.gotoScene("signedIn", {effect = "fade", time = 3000,})
 end
 
+
 --Called if the scene hasn't been previously seen
 function scene:create( event )
-	local text4 = display.newText
+	local instruct = display.newText( "Please enter the information required. Good luck out there!", display.contentCenterX, 100, nil, 26)
+	local instruct2 = display.newText( "This will allow you to enter our system and play the games.", display.contentCenterX, 150, nil, 26)
+	local instruct3 = display.newText( "Thank you!", display.contentCenterX, 280, nil, 54)
+	local text4 = display.newText("Email:",xCenter/2-200,yCenter/4+150,nil,36)
 	local text1 = display.newText("Username:",xCenter/2-200,yCenter/4+250,nil,36)
 	local text2 = display.newText("Password:",xCenter/2-200,yCenter/4+350,nil,36)
+	EmailBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+150, xCenter/2, 100)
+	EmailBox.inputType = "email"
+	EmailBox.size = "10"
+	EmailBox.text = "Email"
 	usernameBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
 	usernameBox.inputType = "default"
 	usernameBox.size = "10"
@@ -64,8 +72,11 @@ local submit = widget.newButton
 -- Center the button
 submit.x = display.contentCenterX
 submit.y = yCenter-175	
-
-
+	localGroup:insert(instruct)
+	localGroup:insert(instruct2)
+	localGroup:insert(instruct3)
+	localGroup:insert(EmailBox)
+	localGroup:insert(text4)
 	localGroup:insert(text1)
 	localGroup:insert(text2)
 	localGroup:insert(text3)

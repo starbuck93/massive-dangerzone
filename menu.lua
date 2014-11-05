@@ -13,8 +13,8 @@
 
 We're going to first display a splash screen, then come to this screen where the user can possibly login  
 
-  
  --]]
+
 local xCenter = display.contentWidth
 local yCenter = display.contentHeight
 local widget = require ( "widget" )
@@ -58,7 +58,7 @@ function scene:create( event )
 	        size = 36,
 	        id = "tab3",
 	        labelYOffset = -25,
-	        onPress = function() composer.gotoScene( "login" ); end,
+	        onPress = function() composer.gotoScene( "register" ); end,
 	    },
 	}
 

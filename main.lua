@@ -19,5 +19,5 @@ local function fadeout()
 --	transition.to( background, {time = 500, alpha = 0})
 	composer.gotoScene("menu", options)
 end
-	timer.performWithDelay( 3000, transition.to( background, {time = 2000, alpha = 0}) )
-	timer.performWithDelay( 3000, fadeout)
+	timer.performWithDelay( 3000, transition.to( background, {time = 1000, alpha = 0}) )
+	timer.performWithDelay( 1000, fadeout)

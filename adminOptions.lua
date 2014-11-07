@@ -72,3 +72,15 @@ edit.x = display.contentCenterX
 edit.y = display.contentCenterY
 resume.x = display.contentCenterX
 resume.y = display.contentCenterY+150
+
+
+-- "createScene" is called whenever the scene is FIRST called
+scene:addEventListener( "create", scene )
+
+-- "enterScene" event is dispatched whenever scene transition has finished
+scene:addEventListener( "show", scene )
+
+-- "exitScene" event is dispatched before next scene's transition begins
+scene:addEventListener( "hide", scene )
+	return scene
+

@@ -31,46 +31,29 @@ function scene:create( event )
 	message:setFillColor(1,1,1)
 	localGroup:insert(message)
 
+
+	local function loginFunction( event )
+		composer.gotoScene( "login" )
+	end
+
+	local login = widget.newButton{
+	id = "loginButton",
+	left = xCenter/2,
+	top = yCenter/2+200,
+	label = "Login",
+	labelColor = { default={ 0, 1, 0 }, over={ 1, 0, 0, 0.5 } },
+	onEvent = loginFunction
+	}
+
+
+
 	local function helpFunction()
 		print("help")
 		--composer.gotoScene("help")
 	end
 	
 	local help = display.newImage( "pics/questionmark2.png",xCenter-25,25 )
-	local tabButtons = {
-	    {
-	        label = "Main Menu",
-	        size = 36,
-	        id = "tab1",
-	        selected = true,
-	        labelYOffset = -25,
-	        onPress = function() composer.gotoScene( "menu" ); end,
-	    },
-	    {
-	        label = "Login",
-	        size = 36,
-	        id = "tab2",
-	        labelYOffset = -25,
-	        onPress = function() composer.gotoScene( "login" ); end,
-	    },
-	    {
-	        label = "Register",
-	        size = 36,
-	        id = "tab3",
-	        labelYOffset = -25,
-	        onPress = function() composer.gotoScene( "register" ); end,
-	    },
-	}
 
-
-	-- Create the widget
-	local tabBar = widget.newTabBar
-	{
-	    top = yCenter-100,
-	    width = xCenter,
-	    height = 100,
-	    buttons = tabButtons
-	}	
 
 	help:addEventListener( "tap", helpFunction )
 

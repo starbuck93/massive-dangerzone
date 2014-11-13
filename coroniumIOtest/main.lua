@@ -2,7 +2,6 @@
 
 local globals = require( "globals" )
 local coronium = require( "mod_coronium" )
-local mime = require("mime")
 
 coronium:init({ appId = globals.appId, apiKey = globals.apiKey })
 globals.coronium = coronium
@@ -11,21 +10,23 @@ globals.coronium = coronium
 coronium.showStatus = true
 --coronium:run("hello")
 
---== Register user callback ==--
-local function onloginUser( e )
-  print( e.result )
+local function registerUserFunction( )
+--== login the user ==--
+coronium:registerUser({ 
+  email = "a",
+  password = "a"
+} )
 end
---== Register the user ==--
+
+local function loginUserFunction( )
 coronium:loginUser({ 
-  email = "me.starbuck@gmail.com", --REQUIRED
-  password = "2468", --REQUIRED
-}, onloginUser )
-
-local function onLink( e )
-  print( e.result )
+  email = "a",
+  password = "b"
+} )
 end
 
-coronium:linkUserDevice(
-	{deviceToken = 1234123412341234,
-	addToPushBots = false	},
-	onLink )
+local register = display.newText("Register", 100, 100, nil, 24)
+local login = display.newText("Login", 100, 200, nil, 24)
+
+register:addEventListener( "tap",registerUserFunction )
+login:addEventListener( "tap",loginUserFunction )

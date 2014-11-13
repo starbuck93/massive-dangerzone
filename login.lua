@@ -87,6 +87,7 @@ admin.y = display.contentCenterY+350
 	localGroup:insert(submit)
 	localGroup:insert(usernameBox)
 	localGroup:insert(passwordBox)
+	localGroup:insert(admin)
 end
 
 

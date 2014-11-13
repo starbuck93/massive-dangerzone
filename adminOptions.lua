@@ -15,9 +15,9 @@ function scene:create( event )
     -- Initialize the scene here.
     -- Example: add display objects to "sceneGroup", add touch listeners, etc.
 
-	local welcome = display.newText( "Oh, hey Admin ;)", display.contentCenterX, 100, nil, 36)
-	local welcome = display.newText( "Welcome to your main hub!", display.contentCenterX, 150, nil, 36)
-	local welcome = display.newText( "What ywould you like to do?", display.contentCenterX, 200, nil, 36)
+	local welcome_l1 = display.newText( "Oh, hey Admin ;)", display.contentCenterX, 100, nil, 36)
+	local welcome_l2 = display.newText( "Welcome to your main hub!", display.contentCenterX, 150, nil, 36)
+	local welcome_l3 = display.newText( "What ywould you like to do?", display.contentCenterX, 200, nil, 36)
 
 
 
@@ -80,6 +80,14 @@ function scene:create( event )
 	edit.y = display.contentCenterY
 	resume.x = display.contentCenterX
 	resume.y = display.contentCenterY+150
+
+	localGroup:insert(welcome_l1)
+	localGroup:insert(welcome_l2)
+	localGroup:insert(welcome_l3)
+	localGroup:insert(resume)
+	localGroup:insert(edit)
+	localGroup:insert(start)
+
 end
 
 function scene:show(event)
@@ -91,6 +99,7 @@ function scene:hide(event)
 localGroup.alpha = 0
 
 end
+
 
 -- "createScene" is called whenever the scene is FIRST called
 scene:addEventListener( "create", scene )

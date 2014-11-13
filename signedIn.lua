@@ -15,21 +15,24 @@
   
  --]]
 	
-local xCenter = display.contentWidth
-local yCenter = display.contentHeight
+local xCenter = display.contentWidth/2
+local yCenter = display.contentHeight/2
 local widget = require ( "widget" )
 local composer = require("composer")
 local scene = composer.newScene()
 local localGroup = display.newGroup()
 
-local function moveScenes()
-	composer.gotoScene("name", {effect = "fade", time = 1000,})
+local function moveScenes( event )
+	--if event.phase == "ended" then
+		--print("Ended")
+	composer.gotoScene("gameStatus", {effect = "fade", time = 1000})
+	--end
 end
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
-	local welcomeText = display.newText("Welcome, username...",xCenter/2,yCenter/2-400,nil,50)
-	local welcomeText2 = display.newText("Please select a game to join.",xCenter/2,yCenter/2-350,nil,50)
+	local welcomeText = display.newText("Welcome, username...",xCenter,yCenter-400,nil,50)
+	local welcomeText2 = display.newText("Please select a game to join.",xCenter,yCenter-350,nil,50)
 	local game1 = widget.newButton
 	{
 	    label = "Game 1 --- some data here",
@@ -38,15 +41,50 @@ function scene:create( event )
 	    fontSize = 48,
 	    emboss = true,
 	    shape="roundedRect",
-	    width = xCenter-50,
+	    width = xCenter*2-50,
 	    height = 100,
 	    cornerRadius = 50,
 	    fillColor = { default={ 1, 0, 0, 1 }, over={ 1, 1, 1, 1} },
-	    --onEvent = moveScenes
+	    onEvent = moveScenes
 	}
-	game1.x = xCenter/2
-	game1.y = yCenter/2
+	game1.x = xCenter
+	game1.y = yCenter
 
+	
+	-- local tabButtons = {
+	--     {
+	--         label = "Main Menu",
+	--         size = 36,
+	--         id = "tab1",
+	--         selected = true,
+	--         labelYOffset = -25,
+	--         onPress = function() composer.gotoScene( "menu" ); end,
+	--     },
+	--     {
+	--         label = "Login",
+	--         size = 36,
+	--         id = "tab2",
+	--         labelYOffset = -25,
+	--         onPress = function() composer.gotoScene( "login" ); end,
+	--     },
+	--     {
+	--         label = "Register",
+	--         size = 36,
+	--         id = "tab3",
+	--         labelYOffset = -25,
+	--         onPress = function() composer.gotoScene( "register" ); end,
+	--     },
+	-- }
+
+
+	-- Create the widget
+	-- local tabBar = widget.newTabBar
+	-- {
+	--     top = yCenter-100,
+	--     width = xCenter,
+	--     height = 100,
+	--     buttons = tabButtons
+	-- }	
 
 	localGroup:insert(welcomeText)
 	localGroup:insert(welcomeText2)

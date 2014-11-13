@@ -87,6 +87,16 @@ localGroup.alpha = 0
 
 end
 
+-- function scene:destroy( event )
+
+--     local sceneGroup = self.view
+
+--     -- Called prior to the removal of scene's view ("sceneGroup").
+--     -- Insert code here to clean up the scene.
+--     -- Example: remove display objects, save state, etc.
+-- end
+
+
 -- "createScene" is called whenever the scene is FIRST called
 scene:addEventListener( "create", scene )
 
@@ -95,5 +105,8 @@ scene:addEventListener( "show", scene )
 
 -- "exitScene" event is dispatched before next scene's transition begins
 scene:addEventListener( "hide", scene )
-	return scene
+	
+--
+--scene:addEventListener( "destroy", scene )
+return scene
 

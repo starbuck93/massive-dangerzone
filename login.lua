@@ -25,6 +25,11 @@ local function moveScenes()
 	composer.gotoScene("signedIn", {effect = "fade", time = 3000,})
 end
 
+local function moveScenesAdmin()
+	composer.gotoScene("adminOptions")
+end
+
+
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
@@ -55,9 +60,25 @@ local submit = widget.newButton
     onEvent = moveScenes
 }
 
--- Center the button
+local admin = widget.newButton
+{
+    label = "Admin?",
+    font = nil,
+    fontSize = 48,
+    emboss = true,
+    shape="roundedRect",
+    width = 300,
+    height = 100,
+    cornerRadius = 50,
+    fillColor = { default={ 0, 1, 0, 1 }, over={ 1, 1, 0, 1} },
+    onEvent = moveScenesAdmin
+}
+
+-- Center the buttons
 submit.x = display.contentCenterX
-submit.y = display.contentCenterY+200	
+submit.y = display.contentCenterY+200
+admin.x = display.contentCenterX
+admin.y = display.contentCenterY+350	
 
 
 	localGroup:insert(text1)

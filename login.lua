@@ -1,28 +1,14 @@
-
---====================================================================--
--- SCENE: login
---====================================================================--
-
---[[
-
-******************
- - INFORMATION
-******************
-
-  - login page
-
-The user can log in here
-  
- --]]
 local xCenter = display.contentWidth
 local yCenter = display.contentHeight
 local widget = require ( "widget" )
 local composer = require("composer")
 local scene = composer.newScene()
 local localGroup = display.newGroup()
+local globals = require( "globals" )
+local coronium = require( "mod_coronium" )
 
 local function moveScenes()
-	composer.gotoScene("signedIn", {effect = "fade", time = 3000,})
+	composer.gotoScene("signedIn")
 end
 
 local function moveScenesAdmin()
@@ -46,47 +32,47 @@ function scene:create( event )
 	passwordBox.isSecure = true
 
 
-local submit = widget.newButton
-{
-    label = "Submit",
-    font = nil,
-    fontSize = 48,
-    emboss = true,
-    shape="roundedRect",
-    width = 300,
-    height = 100,
-    cornerRadius = 50,
-    fillColor = { default={ 0, 1, 0, 1 }, over={ 1, 1, 0, 1} },
-    onEvent = moveScenes
-}
+	local submit = widget.newButton
+	{
+	    label = "Submit",
+	    font = nil,
+	    fontSize = 70,
+	    emboss = true,
+	    shape="roundedRect",
+	    width = display.contentWidth/2,
+	    height = 100,
+	    cornerRadius = 50,
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+	    onRelease = moveScenes
+	}
 
-local admin = widget.newButton
-{
-    label = "Admin?",
-    font = nil,
-    fontSize = 48,
-    emboss = true,
-    shape="roundedRect",
-    width = 300,
-    height = 100,
-    cornerRadius = 50,
-    fillColor = { default={ 0, 1, 0, 1 }, over={ 1, 1, 0, 1} },
-    onEvent = moveScenesAdmin
-}
+	local admin = widget.newButton
+	{
+	    label = "Admin?",
+	    font = nil,
+	    fontSize = 70,
+	    emboss = true,
+	    shape="roundedRect",
+	    width = display.contentWidth/2,
+	    height = 100,
+	    cornerRadius = 50,
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+	    onRelease = moveScenesAdmin
+	}
 
--- Center the buttons
-submit.x = display.contentCenterX
-submit.y = display.contentCenterY+200
-admin.x = display.contentCenterX
-admin.y = display.contentCenterY+350	
+	-- Center the buttons
+	submit.x = display.contentCenterX
+	submit.y = display.contentCenterY+200
+	admin.x = display.contentCenterX
+	admin.y = display.contentCenterY+350	
 
 
 	localGroup:insert(text1)
 	localGroup:insert(text2)
 	localGroup:insert(nerf)
 	localGroup:insert(submit)
-	localGroup:insert(usernameBox)
-	localGroup:insert(passwordBox)
 	localGroup:insert(admin)
 end
 
@@ -94,11 +80,21 @@ end
 function scene:show(event)
 	localGroup.alpha = 1
 	composer.removeHidden( true )
+	usernameBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
+	usernameBox.inputType = "default"
+	usernameBox.size = "10"
+	usernameBox.text = "Username"
+	passwordBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+350, xCenter/2, 100)
+	passwordBox.inputType = "default"
+	passwordBox.size = "10"
+	passwordBox.text = "Password"
+	passwordBox.isSecure = true
 end
 
 function scene:hide(event)
-localGroup.alpha = 0
-
+	localGroup.alpha = 0
+	usernameBox:removeSelf( )
+	passwordBox:removeSelf( )
 end
 
 -- "createScene" is called whenever the scene is FIRST called
@@ -109,5 +105,7 @@ scene:addEventListener( "show", scene )
 
 -- "exitScene" event is dispatched before next scene's transition begins
 scene:addEventListener( "hide", scene )
-	return scene
+
+
+return scene
 

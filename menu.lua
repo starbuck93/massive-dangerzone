@@ -1,34 +1,21 @@
-
---====================================================================--
--- SCENE: Menu
---====================================================================--
-
---[[
-
-******************
- - INFORMATION
-******************
-
-  - Menu.
-
-We're going to first display a splash screen, then come to this screen where the user can possibly login  
-
- --]]
-
+--scene: menu
 local xCenter = display.contentWidth
 local yCenter = display.contentHeight
 local widget = require ( "widget" )
 local composer = require("composer")
 local scene = composer.newScene()
 local localGroup = display.newGroup()
+local globals = require( "globals" )
+local coronium = require( "mod_coronium" )
 
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
+
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
 	localGroup:insert(nerf)
-	local message = display.newText("We Like to Have Fun Here",xCenter/2,yCenter/2,nil,60)
-	message:setFillColor(1,1,1)
+	local message = display.newText("NERF CLUB",xCenter/2,yCenter/2-200,nil,60)
+	message:setFillColor(232/255, 100/255, 37/255)
 	localGroup:insert(message)
 
 
@@ -38,17 +25,46 @@ function scene:create( event )
 
 	local login = widget.newButton{
 	id = "loginButton",
-	left = xCenter/2,
-	top = yCenter/2+200,
+	width = display.contentWidth/2,
+	height = 100,
+	emboss = true,
+	fontSize = 70,
+	top = yCenter/2-100,
 	label = "Login",
-	labelColor = { default={ 0, 1, 0 }, over={ 1, 0, 0, 0.5 } },
-	onEvent = loginFunction
+	shape="roundedRect",
+	cornerRadius = 45,
+	labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+	fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+	onRelease = loginFunction
 	}
+	login.x = xCenter/2
+	localGroup:insert(login)	
 
+	local function registerFunction( event )
+		composer.gotoScene( "register" )
+	end
+
+	local register = widget.newButton{
+	id = "registerButton",
+	width = display.contentWidth/2,
+	height = 100,
+	emboss = true,
+	fontSize = 70,
+	top = yCenter/2+100,
+	label = "Register",
+	shape="roundedRect",
+	cornerRadius = 45,
+	labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+	fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+	onRelease = registerFunction
+	}
+	register.x = xCenter/2
+	localGroup:insert(register)
 
 
 	local function helpFunction()
 		print("help")
+		coronium:addEvent( "helpEvent", "Help! " .. username)
 		--composer.gotoScene("help")
 	end
 	

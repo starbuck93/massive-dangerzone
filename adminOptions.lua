@@ -17,7 +17,7 @@ function scene:create( event )
 
 	local welcome_l1 = display.newText( "Oh, hey Admin ;)", display.contentCenterX, 100, nil, 36)
 	local welcome_l2 = display.newText( "Welcome to your main hub!", display.contentCenterX, 150, nil, 36)
-	local welcome_l3 = display.newText( "What ywould you like to do?", display.contentCenterX, 200, nil, 36)
+	local welcome_l3 = display.newText( "What would you like to do?", display.contentCenterX, 200, nil, 36)
 
 
 
@@ -28,6 +28,7 @@ function scene:create( event )
 		composer.gotoScene("EditGame", {effect = "fade", time = 3000,})
 	end
 	local function moveScenes_03()
+		--instead of moving to a scene here, maybe we'll want to load another scene with some data or something
 		composer.gotoScene("ResumeGame", {effect = "fade", time = 3000,})
 	end
 

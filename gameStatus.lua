@@ -1,17 +1,34 @@
+
+--====================================================================--
+-- SCENE: gameStatus
+--====================================================================--
+
 local composer = require("composer")
+local widget = require("widget")
 display.setStatusBar( display.HiddenStatusBar )
 local scene = composer.newScene()
 local xCenter = display.contentCenterX
 local yCenter = display.contentCenterY
 local localGroup = display.newGroup()
+local globals = require( "globals" )
+local coronium = require( "mod_coronium" )
 
 
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
+    local back = widget.newButton{
+        left = 0,
+        top = 0,
+        id = "back",
+        label = "<-- back",
+        fontSize = 30,
+        onRelease = function() composer.gotoScene( "signedIn" ); end,
+    }
 
-    local yAxis = display.newLine( 450, 100, 450, 700 )
+    nerfImage.alpha = 0 --a global value
+    local yAxis =     display.newLine( 450, 100, 450, 700 )
     local xAxis_00 = display.newLine( 0, 100, 800, 100 )
     local xAxis_01 = display.newLine( 0, 200, 800, 200 )
     local xAxis_02 = display.newLine( 0, 300, 800, 300 )
@@ -39,47 +56,45 @@ function scene:create( event )
 
 
     --ready up
-    local background = display.newRect( xCenter, yCenter, 720, 1280 )
-    background:setFillColor( 1,0,0 )
+    readyRect = display.newRect( xCenter, yCenter, display.actualContentWidth , display.actualContentHeight )
+    readyRect:setFillColor( 153/255,0,0 )
     local ready = display.newText( "Ready Up!", xCenter, yCenter + 300, nil, 72 )
-    background:toBack()
+    readyRect:toBack()
 
 
-    --ready up
-    -- local background = display.newRect( xCenter, yCenter, 720, 1280 )
-    -- background:toBack()
-    -- background:setFillColor( 1,0,0 )
-    -- background.alpha = .5
-
+    local options ={text="I'm Ready!", x=display.contentCenterX, y = display.contentCenterY+550, font=native.systemFont, fontSize=30, width= display.actualContentWidth, align="center"}
+    local imReady = display.newText(options)
+    imReady.alpha=0
 
     -- Handle press events for the checkbox
-    local widget = require("widget")
     local function onSwitchPress( event )
         local switch = event.target
         print( "Switch with ID '"..switch.id.."' is on: "..tostring(switch.isOn) )
         if switch.isOn == false then
 
-        	background:setFillColor( 0,1,0 )
-            background:toBack()
+        	readyRect:setFillColor( 0,100/255,0 )
+            -- readyRect:toBack() --dont need this
+            imReady.alpha = 1
+            imReady:setFillColor( 1,1,1 )
+            imReady.text="I'm Ready!"
         else
-        	background:setFillColor( 1,0,0 )
-            background:toBack()
+        	readyRect:setFillColor( 139/255,0,0 )
+            -- readyRect:toBack() --dont need this
+            imReady:setFillColor( black )
+            imReady.text="I'm not ready :("
         end
     end
 
     -- Create the widget
     local readyUP = widget.newSwitch
     {
-        left = 250,
-        top = 200,
         style = "onOff",
         id = "readyUP",
-
         initialSwitchState = false,
         onPress = onSwitchPress
     }
 
-    readyUP:scale( 3, 3 )
+    readyUP:scale( 2, 2 )
     readyUP.x = xCenter
     readyUP.y = yCenter + 500
 
@@ -98,19 +113,22 @@ function scene:create( event )
     localGroup:insert(timeLimit)
     localGroup:insert(timeBegin)
     localGroup:insert(ready)
-    localGroup:insert(readyUP)
-    localGroup:toFront()
+    localGroup:insert(imReady)
+    localGroup:insert(readyUP)    
+
+    localGroup:toFront() --nice
 end
 
 function scene:show(event)
     localGroup.alpha = 1
+    readyRect.alpha = 1
     composer.removeHidden( true )
 
 end
 
 function scene:hide(event)
-localGroup.alpha = 0
-
+    localGroup.alpha = 0
+    readyRect.alpha = 0
 end
 
 

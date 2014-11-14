@@ -3,17 +3,6 @@
 -- SCENE: signed in
 --====================================================================--
 
---[[
-
-******************
- - INFORMATION
-******************
-
-  - signed in
-
-
-  
- --]]
 	
 local xCenter = display.contentWidth/2
 local yCenter = display.contentHeight/2
@@ -21,6 +10,8 @@ local widget = require ( "widget" )
 local composer = require("composer")
 local scene = composer.newScene()
 local localGroup = display.newGroup()
+local globals = require( "globals" )
+local coronium = require( "mod_coronium" )
 
 local function moveScenes( event )
 	--if event.phase == "ended" then
@@ -31,7 +22,7 @@ end
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
-	local welcomeText = display.newText("Welcome, username...",xCenter,yCenter-400,nil,50)
+	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,50)
 	local welcomeText2 = display.newText("Please select a game to join.",xCenter,yCenter-350,nil,50)
 	local game1 = widget.newButton
 	{
@@ -44,7 +35,8 @@ function scene:create( event )
 	    width = xCenter*2-50,
 	    height = 100,
 	    cornerRadius = 50,
-	    fillColor = { default={ 1, 0, 0, 1 }, over={ 1, 1, 1, 1} },
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
 	    onEvent = moveScenes
 	}
 	game1.x = xCenter

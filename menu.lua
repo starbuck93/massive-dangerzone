@@ -1,17 +1,14 @@
 --scene: menu
 local xCenter = display.contentWidth
 local yCenter = display.contentHeight
-local widget = require ( "widget" )
-local composer = require("composer")
 local scene = composer.newScene()
 local localGroup = display.newGroup()
-local globals = require( "globals" )
-local coronium = require( "mod_coronium" )
 
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
+	help.alpha = 1
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
 	localGroup:insert(nerf)
 	local message = display.newText("NERF CLUB",xCenter/2,yCenter/2-200,nil,60)
@@ -60,18 +57,6 @@ function scene:create( event )
 	}
 	register.x = xCenter/2
 	localGroup:insert(register)
-
-
-	local function helpFunction()
-		print("help")
-		coronium:addEvent( "helpEvent", "Help! " .. username)
-		--composer.gotoScene("help")
-	end
-	
-	local help = display.newImage( "pics/questionmark2.png",xCenter-25,25 )
-
-
-	help:addEventListener( "tap", helpFunction )
 
 end
 

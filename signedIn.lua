@@ -6,12 +6,8 @@
 	
 local xCenter = display.contentWidth/2
 local yCenter = display.contentHeight/2
-local widget = require ( "widget" )
-local composer = require("composer")
 local scene = composer.newScene()
 local localGroup = display.newGroup()
-local globals = require( "globals" )
-local coronium = require( "mod_coronium" )
 
 local function moveScenes( event )
 	--if event.phase == "ended" then

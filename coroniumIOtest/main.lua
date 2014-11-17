@@ -44,7 +44,8 @@ local function registerUserFunction( )
 --== login the user ==--
 coronium:registerUser({ 
   email = "adam",
-  password = "adam"
+  password = "adam",
+  username = "adam"
 } )
 coronium:addEvent( "registerUEvent", "registerUEventTag", onAddEvent )
 end
@@ -63,19 +64,29 @@ local function logoutUserFunction()
 
 end
 
+local function getMeReturn(event)
+    print(event.objectId )
+end
+
 local function getMeFunction()
-	coronium:getMe()
+	coronium:getMe(getMeReturn)
 	coronium:addEvent( "getMeEvent", "getMeEventTag", onAddEvent )
+end
+
+local function getUserFunction()
+  coronium:getUser("")
 end
 
 local register = display.newText("Register", 100, 100, nil, 24)
 local login = display.newText("Login", 100, 200, nil, 24)
 local logout = display.newText("Logout", 100, 300, nil, 24)
 local getMe = display.newText("Get Me", 100, 400, nil, 24)
+local getUser = display.newText("Get User", 300, 100, nil, 24)
 
 register:addEventListener( "tap",registerUserFunction )
 login:addEventListener( "tap",loginUserFunction )
 logout:addEventListener( "tap",logoutUserFunction )
 getMe:addEventListener( "tap",getMeFunction )
+getUser:addEventListener( "tap",getUserFunction )
 emailBox:addEventListener( "userInput", emailListener )
 

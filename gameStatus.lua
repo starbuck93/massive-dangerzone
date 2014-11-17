@@ -3,15 +3,10 @@
 -- SCENE: gameStatus
 --====================================================================--
 
-local composer = require("composer")
-local widget = require("widget")
-display.setStatusBar( display.HiddenStatusBar )
 local scene = composer.newScene()
 local xCenter = display.contentCenterX
 local yCenter = display.contentCenterY
 local localGroup = display.newGroup()
-local globals = require( "globals" )
-local coronium = require( "mod_coronium" )
 
 
 
@@ -115,6 +110,7 @@ function scene:create( event )
     localGroup:insert(ready)
     localGroup:insert(imReady)
     localGroup:insert(readyUP)    
+    localGroup:insert(back)    
 
     localGroup:toFront() --nice
 end

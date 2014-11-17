@@ -1,11 +1,8 @@
+--scene Login
 local xCenter = display.contentWidth
 local yCenter = display.contentHeight
-local widget = require ( "widget" )
-local composer = require("composer")
 local scene = composer.newScene()
 local localGroup = display.newGroup()
-local globals = require( "globals" )
-local coronium = require( "mod_coronium" )
 
 local function moveScenes()
 	composer.gotoScene("signedIn")
@@ -18,13 +15,50 @@ end
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
+
+	local password = ""
+
+    local back = widget.newButton{
+        left = 0,
+        top = 0,
+        id = "back",
+        label = "<-- back",
+        fontSize = 30,
+        onRelease = function() composer.gotoScene( "menu" ); end,
+    }
+
+
+	local function onLoginEvent( event )
+		if not event.error then
+			coronium:addEvent( "LoginEvent", "login " .. email )
+			composer.gotoScene("signedIn", {effect = "fade", time = 3000,})
+		end
+	end
+	local function login( event )
+		coronium:loginUser(email,password,onLoginEvent)
+		
+	end
+
+	local function onLoginEventAdmin( event )
+		if not event.error then
+			coronium:addEvent( "LoginEvent", "login " .. email )
+			username = coronium:getUser(email)
+			composer.gotoScene("adminOptions", {effect = "fade", time = 3000,})
+		end
+	end
+	local function loginEventAdmin( event )
+		if email == "Admin" and password == "ADMIN" then
+			coronium:loginUser(email,password,onLoginEventAdmin)
+		end
+	end
+
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
-	local text1 = display.newText("Username:",xCenter/2-200,yCenter/4+250,nil,48)
+	local text1 = display.newText("Email:",xCenter/2-200,yCenter/4+250,nil,48)
 	local text2 = display.newText("Password:",xCenter/2-200,yCenter/4+350,nil,48)
-	usernameBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
-	usernameBox.inputType = "default"
-	usernameBox.size = "10"
-	usernameBox.text = "Username"
+	emailBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
+	emailBox.inputType = "default"
+	emailBox.size = "10"
+	emailBox.text = "Email"
 	passwordBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+350, xCenter/2, 100)
 	passwordBox.inputType = "default"
 	passwordBox.size = "10"
@@ -44,7 +78,7 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    onRelease = moveScenes
+	    onRelease = login
 	}
 
 	local admin = widget.newButton
@@ -59,7 +93,7 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    onRelease = moveScenesAdmin
+	    onRelease = loginEventAdmin
 	}
 
 	-- Center the buttons
@@ -74,27 +108,52 @@ function scene:create( event )
 	localGroup:insert(nerf)
 	localGroup:insert(submit)
 	localGroup:insert(admin)
+	localGroup:insert(back)
+	localGroup:insert(emailBox)
+	localGroup:insert(passwordBox)
+
+	local function emailListener( event )
+	    if ( event.phase == "began" ) then
+	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+	    	email = event.target.text
+	       	native.setKeyboardFocus( passwordBox )
+	    elseif ( event.phase == "editing" ) then
+	    end
+	end
+
+	local function passwordListener( event )
+	    if ( event.phase == "began" ) then
+	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+	    	password = event.target.text
+	       	native.setKeyboardFocus( nil )
+	    elseif ( event.phase == "editing" ) then
+	    end
+	end
+
+	emailBox:addEventListener( "userInput", emailListener )
+	passwordBox:addEventListener( "userInput", passwordListener )
+
 end
 
 
 function scene:show(event)
 	localGroup.alpha = 1
 	composer.removeHidden( true )
-	usernameBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
-	usernameBox.inputType = "default"
-	usernameBox.size = "10"
-	usernameBox.text = "Username"
-	passwordBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+350, xCenter/2, 100)
-	passwordBox.inputType = "default"
-	passwordBox.size = "10"
-	passwordBox.text = "Password"
-	passwordBox.isSecure = true
+	-- emailBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
+	-- emailBox.inputType = "default"
+	-- emailBox.size = "10"
+	-- emailBox.text = "Email"
+	-- passwordBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+350, xCenter/2, 100)
+	-- passwordBox.inputType = "default"
+	-- passwordBox.size = "10"
+	-- passwordBox.text = "Password"
+	-- passwordBox.isSecure = true
 end
 
 function scene:hide(event)
 	localGroup.alpha = 0
-	usernameBox:removeSelf( )
-	passwordBox:removeSelf( )
+	-- emailBox:removeSelf( )
+	-- passwordBox:removeSelf( )
 end
 
 -- "createScene" is called whenever the scene is FIRST called

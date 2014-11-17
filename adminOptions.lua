@@ -1,9 +1,6 @@
-
-
+--scene admin options
 local xCenter = display.contentWidth
 local yCenter = display.contentHeight
-local widget = require ( "widget" )
-local composer = require("composer")
 local scene = composer.newScene()
 local localGroup = display.newGroup()
 
@@ -34,45 +31,48 @@ function scene:create( event )
 
 
 
-		local start = widget.newButton
-		{
-		    label = "Start a Game",
-		    font = nil,
-		    fontSize = 38,
-		    emboss = true,
-		    shape="roundedRect",
-		    width = 325,
-		    height = 100,
-		    cornerRadius = 50,
-		    fillColor = { default={ 0, 1, 0, 1 }, over={ 1, 1, 0, 1} },
-		    onEvent = moveScenes_01
-		}
-		local edit = widget.newButton
-		{
-		    label = "Edit a Game",
-		    font = nil,
-		    fontSize = 38,
-		    emboss = true,
-		    shape="roundedRect",
-		    width = 325,
-		    height = 100,
-		    cornerRadius = 50,
-		    fillColor = { default={ 0, 1, 0, 1 }, over={ 1, 1, 0, 1} },
-		    onEvent = moveScenes_02
-		}
-		local resume = widget.newButton
-		{
-		    label = "Resume a Game",
-		    font = nil,
-		    fontSize = 38,
-		    emboss = true,
-		    shape="roundedRect",
-		    width = 325,
-		    height = 100,
-		    cornerRadius = 50,
-		    fillColor = { default={ 0, 1, 0, 1 }, over={ 1, 1, 0, 1} },
-		    onEvent = moveScenes_03
-		}
+	local start = widget.newButton
+	{
+	    label = "Start a Game",
+	    font = nil,
+	    fontSize = 38,
+	    emboss = true,
+	    shape="roundedRect",
+	    width = 325,
+	    height = 100,
+	    cornerRadius = 50,
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+	    onEvent = moveScenes_01
+	}
+	local edit = widget.newButton
+	{
+	    label = "Edit a Game",
+	    font = nil,
+	    fontSize = 38,
+	    emboss = true,
+	    shape="roundedRect",
+	    width = 325,
+	    height = 100,
+	    cornerRadius = 50,
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+	    onEvent = moveScenes_02
+	}
+	local resume = widget.newButton
+	{
+	    label = "Resume a Game",
+	    font = nil,
+	    fontSize = 38,
+	    emboss = true,
+	    shape="roundedRect",
+	    width = 325,
+	    height = 100,
+	    cornerRadius = 50,
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+	    onEvent = moveScenes_03
+	}
 
 	--set button locations
 	start.x = display.contentCenterX

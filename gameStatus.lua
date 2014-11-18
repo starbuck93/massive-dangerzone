@@ -19,8 +19,10 @@ function scene:create( event )
         id = "back",
         label = "<-- back",
         fontSize = 30,
-        onRelease = function() composer.gotoScene( "signedIn" ); end,
+        location = composer.getSceneName( "previous" ),
+        onRelease = function() composer.gotoScene(location); end,
     }
+    location = composer.getSceneName( "previous" )
 
     nerfImage.alpha = 0 --a global value
     local yAxis =     display.newLine( 450, 100, 450, 700 )

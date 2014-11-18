@@ -11,8 +11,26 @@ composer = require("composer")
 local scene = composer.newScene()
 
 function scene:create( event )
-	local intro=display.newText("Hello there! Thanks for downloading out app! If you have any questions, or would like to report a bug, please contact the following:",xCenter,yCenter,450,700,nil,48)
-	local contact = display.newText( "contact email here." )
+	local intro=display.newText("Hello there! Thanks for downloading out app! If you have any questions, or would like to report a bug, please contact the following:",xCenter,yCenter,450,700,nil,48, "center")
+	local contact = display.newText( "contact #1 email here.", xCenter, yCenter + 100, nil, 48 )
+	local contact2 = display.newText( "contact #2 email here.", xCenter, yCenter + 150, nil, 48 )
+
+	 local back = widget.newButton{
+        left = 0,
+        top = 0,
+        id = "back",
+        label = "<-- back",
+        fontSize = 30,
+        location = composer.getSceneName( "previous" ),
+        onRelease = function() composer.gotoScene(location); end,
+    }
+
+    location = composer.getSceneName( "previous" )
+	localGroup:insert( intro )
+	localGroup:insert( contact )
+	localGroup:insert( contact2 )
+
+
 end
 
 

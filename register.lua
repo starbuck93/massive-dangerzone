@@ -38,9 +38,10 @@ function scene:create( event )
         id = "back",
         label = "<-- back",
         fontSize = 30,
-        onRelease = function() composer.gotoScene( "menu" ); end,
+        location = composer.getSceneName( "previous" ),
+        onRelease = function() composer.gotoScene(location); end,
     }
-
+    location = composer.getSceneName( "previous" )
 
 	local password = ""
 	local password2 = ""

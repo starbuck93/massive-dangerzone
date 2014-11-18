@@ -19,7 +19,7 @@ function scene:create( event )
 
 
 	local function moveScenes_01()
-		composer.gotoScene("StartGame", {effect = "fade", time = 3000,})
+		composer.gotoScene("startGame", {effect = "fade", time = 3000,})
 	end
 	local function moveScenes_02()
 		composer.gotoScene("EditGame", {effect = "fade", time = 3000,})

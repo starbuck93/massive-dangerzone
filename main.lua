@@ -27,8 +27,8 @@ email = "default"
 username = "default"
 
 function helpFunction()
-	print("help")
-	coronium:addEvent( "helpEvent", "Help! " .. username)
+	composer:gotoScene("help")
+	--coronium:addEvent( "helpEvent", "Help! " .. username)
 end
 
 help = widget.newButton --another global value that we can edit the alpha of
@@ -46,6 +46,8 @@ help = widget.newButton --another global value that we can edit the alpha of
 }
 help.x = display.contentWidth-30
 help.alpha = 0
+
+
 
 --splash screen, then menu
 

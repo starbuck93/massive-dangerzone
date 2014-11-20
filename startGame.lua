@@ -7,6 +7,15 @@ local scene = composer.newScene()
 
 
 function scene:create( event )
+	local back = widget.newButton{
+        left = 0,
+        top = 0,
+        id = "back",
+        label = "<-- back",
+        fontSize = 30,
+        onRelease = function() composer.gotoScene("adminOptions"); end,
+    }
+    location = composer.getSceneName( "previous" )
 
 -------------------------------------------
 -- Configure display

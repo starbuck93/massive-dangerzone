@@ -42,9 +42,9 @@ help = widget.newButton --another global value that we can edit the alpha of
     height = 1,
 	labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 	fillColor = { default={ 232/255, 100/255, 37/255, .5}, over={ 1, 1, 1, .5 } },
-	radius = 30
+	radius = 60
 }
-help.x = display.contentWidth-30
+help.x = display.contentWidth-60
 help.alpha = 0
 
 

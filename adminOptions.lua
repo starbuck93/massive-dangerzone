@@ -7,11 +7,13 @@ local localGroup = display.newGroup()
 
 function scene:create( event )
 	local back = widget.newButton{
+		 width = 200,
+	 	height = 75,
     	left = 0,
     	top = 0,
     	id = "back",
    		label = "<-- back",
-   		fontSize = 30,
+   		fontSize = 40,
    		onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )

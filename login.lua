@@ -19,11 +19,13 @@ function scene:create( event )
 	local password = ""
 
     local back = widget.newButton{
+        width = 200,
+	 	height = 75,
         left = 0,
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 30,
+        fontSize = 40,
         onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -93,8 +95,8 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    onRelease = loginEventAdmin
-	    --onRelease= composer.gotoScene("adminOptions", {effect = "fade", time = 3000,})
+	    --onRelease = loginEventAdmin
+	    onRelease= composer.gotoScene("adminOptions", {effect = "fade", time = 3000,})
 	}
 
 	-- Center the buttons

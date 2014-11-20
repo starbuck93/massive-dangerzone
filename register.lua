@@ -33,11 +33,13 @@ local localGroup = display.newGroup()
 function scene:create( event )
 
     local back = widget.newButton{
+        width = 200,
+	 	height = 75,
         left = 0,
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 30,
+        fontSize = 40,
         onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -65,17 +67,16 @@ function scene:create( event )
 		username = username
 		}, onRegisterEvent)
 		coronium:addEvent( "registerUEvent", "register" .. email )
+		sentEmail = native.showAlert("Thank you for registering!", "You will recieve an email shortly. Along with some roses and a box of chocolates.", {"Ok, Thanks!"})
 	end
 
 
-	local options = {text ="Please enter the information required. Good luck out there!", x = display.contentCenterX, y = 150, font = native.systemFont, fontSize = 50,width = display.actualContentWidth,align = "center"}
+	local options = {text ="Please enter the information required. Good luck out there!", x = display.contentCenterX, y = 200, font = native.systemFont, fontSize = 50,width = display.actualContentWidth,align = "center"}
 	local instruct = display.newText(options)
 	local text4 = display.newText("Email:",xCenter/2-200,yCenter/4+150,nil,36)
 	local text1 = display.newText("Username:",xCenter/2-200,yCenter/4+250,nil,36)
 	local text2 = display.newText("Password:",xCenter/2-200,yCenter/4+350,nil,36)
 	local text3 = display.newText({text="Confirm Password:",x=xCenter/2-200,y=yCenter/4+450,font=nil,fontSize=36,width = xCenter/2-50, align="center"})
-
-
 
 	local submit = widget.newButton
 	{
@@ -89,7 +90,7 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    onEvent = registerNewUser
+	    onEvent = registerNewUser,
 	}
 
 	-- Center the button

@@ -78,7 +78,7 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    onRelease = login
+	    onRelease = moveScenes
 	}
 
 	local admin = widget.newButton
@@ -93,7 +93,7 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    onRelease = loginEventAdmin
+	    onRelease = moveScenesAdmin
 	    --onRelease= composer.gotoScene("adminOptions", {effect = "fade", time = 3000,})
 	}
 

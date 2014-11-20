@@ -11,9 +11,18 @@ composer = require("composer")
 local scene = composer.newScene()
 
 function scene:create( event )
-	local intro=display.newText("Hello there! Thanks for downloading out app! If you have any questions, or would like to report a bug, please contact the following:",xCenter,yCenter,450,700,nil,48, "center")
-	local contact = display.newText( "contact #1 email here.", xCenter, yCenter + 100, nil, 48 )
-	local contact2 = display.newText( "contact #2 email here.", xCenter, yCenter + 150, nil, 48 )
+
+	local options = {
+	text ="Hello there! Thanks for downloading our app! If you have any questions, or would like to report a bug, please contact the following:", 
+	x = display.contentCenterX, 
+	y = 300, 
+	font = native.systemFont, 
+	fontSize = 50,
+	width = display.actualContentWidth-60,
+	align = "center"}
+	local intro=display.newText(options)
+	local contact = display.newText( "acs11e@acu.edu", xCenter, yCenter + 100, nil, 48 )
+	local contact2 = display.newText( "rap10c@acu.edu", xCenter, yCenter + 150, nil, 48 )
 
 	 local back = widget.newButton{
         left = 0,
@@ -29,6 +38,7 @@ function scene:create( event )
 	localGroup:insert( intro )
 	localGroup:insert( contact )
 	localGroup:insert( contact2 )
+	localGroup:insert( back )
 
 
 end
@@ -40,8 +50,7 @@ function scene:show(event)
 end
 
 function scene:hide(event)
-localGroup.alpha = 0
-
+	localGroup.alpha = 0
 end
 
 -- "createScene" is called whenever the scene is FIRST called

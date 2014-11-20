@@ -13,6 +13,11 @@ local localGroup = display.newGroup()
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
+    local options ={text="I'm Ready!", x=display.contentCenterX, y = display.contentCenterY+550, font=native.systemFont, fontSize=30, width= display.actualContentWidth, align="center"}
+    local imReady = display.newText(options)
+    imReady.alpha=0
+
+
     local back = widget.newButton{
         left = 0,
         top = 0,
@@ -20,7 +25,7 @@ function scene:create( event )
         label = "<-- back",
         fontSize = 30,
         location = composer.getSceneName( "previous" ),
-        onRelease = function() composer.gotoScene(location); end,
+        onRelease = function() imReady.alpha=0; composer.gotoScene(location); end,
     }
     location = composer.getSceneName( "previous" )
 
@@ -59,9 +64,6 @@ function scene:create( event )
     readyRect:toBack()
 
 
-    local options ={text="I'm Ready!", x=display.contentCenterX, y = display.contentCenterY+550, font=native.systemFont, fontSize=30, width= display.actualContentWidth, align="center"}
-    local imReady = display.newText(options)
-    imReady.alpha=0
 
     -- Handle press events for the checkbox
     local function onSwitchPress( event )
@@ -76,9 +78,9 @@ function scene:create( event )
             imReady.text="I'm Ready!"
         else
         	readyRect:setFillColor( 139/255,0,0 )
-            -- readyRect:toBack() --dont need this
             imReady:setFillColor( black )
-            imReady.text="I'm not ready :("
+            imReady.alpha=0
+
         end
     end
 

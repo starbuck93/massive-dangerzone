@@ -8,7 +8,7 @@ widget = require ( "widget" )
 
 display.setDefault( "background", 40/255, 66/255, 99/255, 1 )
 display.setStatusBar( display.HiddenStatusBar )
-widget.setTheme( "widget_theme_android_holo_dark" )
+-- widget.setTheme( "widget_theme_android_holo_dark" )
 
 --== Init Coronium
 coronium:init({ appId = globals.appId, apiKey = globals.apiKey })
@@ -41,10 +41,12 @@ help = widget.newButton --another global value that we can edit the alpha of
     shape="circle",
     height = 1,
 	labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-	fillColor = { default={ 232/255, 100/255, 37/255, .5}, over={ 1, 1, 1, .5 } },
-	radius = 60
+	fillColor = { default={ 232/255, 100/255, 37/255, 1}, over={ 1, 1, 1, .5 } },
+	radius = 40,
+	emboss = true
 }
-help.x = display.contentWidth-60
+help.x = display.contentWidth-50
+help.y = display.contentHeight-50
 help.alpha = 0
 
 

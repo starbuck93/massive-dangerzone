@@ -28,6 +28,9 @@ local localGroup = display.newGroup()
 	passwordBox2.text = "Confirm Password"
 	passwordBox2.isSecure = true
 
+local function moveScenes()
+	composer.gotoScene("signedIn")
+end
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
@@ -90,7 +93,7 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    onEvent = registerNewUser
+	    onEvent = moveScenes
 	}
 
 	-- Center the button

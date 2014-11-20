@@ -20,7 +20,7 @@ function scene:create( event )
 -------------------------------------------
 -- Configure display
 -------------------------------------------
-	local yAxis =     display.newLine( 450, 100, 450, 700 )
+	local yAxis =    display.newLine( 450, 100, 450, 700 )
     local xAxis_00 = display.newLine( 0, 100, 800, 100 )
     local xAxis_01 = display.newLine( 0, 200, 800, 200 )
     local xAxis_02 = display.newLine( 0, 300, 800, 300 )

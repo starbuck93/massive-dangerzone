@@ -11,11 +11,17 @@ function scene:create( event )
 
     -- Initialize the scene here.
     -- Example: add display objects to "sceneGroup", add touch listeners, etc.
+	
+	local options = {
+	text ="Oh, hey Admin ;) Welcome to your main hub! Choose an action. What would you like to do?",
+	x = display.contentCenterX, 
+	y = 300, 
+	font = native.systemFont, 
+	fontSize = 45,
+	width = display.actualContentWidth-60,
+	align = "center"}
 
-	local welcome_l1 = display.newText( "Oh, hey Admin ;)", display.contentCenterX, 100, nil, 36)
-	local welcome_l2 = display.newText( "Welcome to your main hub!", display.contentCenterX, 150, nil, 36)
-	local welcome_l3 = display.newText( "What would you like to do?", display.contentCenterX, 200, nil, 36)
-
+	local welcome = display.newText(options )
 
 
 	local function moveScenes_01()
@@ -33,12 +39,12 @@ function scene:create( event )
 
 	local start = widget.newButton
 	{
-	    label = "Start a Game",
+	    label = "Start",
 	    font = nil,
-	    fontSize = 38,
+	    fontSize = 70,
 	    emboss = true,
 	    shape="roundedRect",
-	    width = 325,
+	    width = xCenter/2,
 	    height = 100,
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
@@ -47,12 +53,12 @@ function scene:create( event )
 	}
 	local edit = widget.newButton
 	{
-	    label = "Edit a Game",
+	    label = "Edit",
 	    font = nil,
-	    fontSize = 38,
+	    fontSize = 70,
 	    emboss = true,
 	    shape="roundedRect",
-	    width = 325,
+	    width = xCenter/2,
 	    height = 100,
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
@@ -61,12 +67,12 @@ function scene:create( event )
 	}
 	local resume = widget.newButton
 	{
-	    label = "Resume a Game",
+	    label = "Resume",
 	    font = nil,
-	    fontSize = 38,
+	    fontSize = 70,
 	    emboss = true,
 	    shape="roundedRect",
-	    width = 325,
+	    width = xCenter/2,
 	    height = 100,
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
@@ -76,15 +82,13 @@ function scene:create( event )
 
 	--set button locations
 	start.x = display.contentCenterX
-	start.y = display.contentCenterY-150
+	start.y = display.contentCenterY
 	edit.x = display.contentCenterX
-	edit.y = display.contentCenterY
+	edit.y = display.contentCenterY+150 
 	resume.x = display.contentCenterX
-	resume.y = display.contentCenterY+150
+	resume.y = display.contentCenterY+300
 
-	localGroup:insert(welcome_l1)
-	localGroup:insert(welcome_l2)
-	localGroup:insert(welcome_l3)
+	localGroup:insert(welcome)
 	localGroup:insert(resume)
 	localGroup:insert(edit)
 	localGroup:insert(start)
@@ -97,8 +101,7 @@ function scene:show(event)
 end
 
 function scene:hide(event)
-localGroup.alpha = 0
-
+	localGroup.alpha = 0
 end
 
 

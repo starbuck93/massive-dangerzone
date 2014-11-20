@@ -10,10 +10,10 @@ function scene:create( event )
 
 	help.alpha = 1
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
-	localGroup:insert(nerf)
+	
 	local message = display.newText("NERF CLUB",xCenter/2,yCenter/2-200,nil,60)
 	message:setFillColor(232/255, 100/255, 37/255)
-	localGroup:insert(message)
+	
 
 
 	local function loginFunction( event )
@@ -35,7 +35,7 @@ function scene:create( event )
 	onRelease = loginFunction
 	}
 	login.x = xCenter/2
-	localGroup:insert(login)	
+
 
 	local function registerFunction( event )
 		composer.gotoScene( "register" )
@@ -56,6 +56,10 @@ function scene:create( event )
 	onRelease = registerFunction
 	}
 	register.x = xCenter/2
+
+	localGroup:insert(login)	
+	localGroup:insert(message)
+	localGroup:insert(nerf)
 	localGroup:insert(register)
 
 end

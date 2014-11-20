@@ -95,7 +95,8 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    onRelease= loginEventAdmin
+	    --onRelease= loginEventAdmin
+	    onRelease = composer.gotoScene("adminOptions", {effect = "fade", time = 3000,})
 	}
 
 	-- Center the buttons

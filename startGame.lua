@@ -48,39 +48,14 @@ function scene:create( event )
 
 
 -------------------------------------------
--- Configure the picker wheel for Game Type
+-- Configure the text box for Game Type
 -------------------------------------------
 	
+	gameType = native.newTextField( xCenter + 270,150, xCenter, 100)
+		gameType.inputType = "default"
+		gameType.size = "10"
 
-	local function GTbutton ()
-		local gameTypes = 
-		{
-		    -- gameTypes
-		    { 
-		        align = "left",
-		        width = 140,
-		        startIndex = 1,
-		        labels = { "TDM","CTF","Zombies" }
-		    }
-		}
-
-		-- Create the widget
-		local pickerWheel = widget.newPickerWheel
-		{
-		    top = display.contentHeight - 222,
-		    columns = gameTypes
-		}
-
-
-	end
-
-	local gameSelect = widget.newButton{
-        left = xCenter + 125,
-        top = 125,
-        label = "Select Game Type",
-        fontSize = 20,
-        onRelease = GTbutton; 
-    }	-------------------------------------------
+    -------------------------------------------
 	-- Configure textBox for #of teams
 	-------------------------------------------
 	teamNum = native.newTextField( xCenter + 270,250, xCenter, 100)
@@ -98,73 +73,43 @@ function scene:create( event )
 	-- Configure pickerwheel for time-to-start
 	-------------------------------------------
 	--labels = {  "No time Limit", "5:00", "10:00", "15:00", "20:00", "30:00", "45:00", "1:00:00", "1:15:00", "1:30:00", "1:45:00", "2:00:00"}
-	local function GLbutton ()
-			local gameLength = 
-			{
-			    -- gameTypes
-			    { 
-			        align = "left",
-			        width = 140,
-			        startIndex = 1,
-			        labels = { "No time Limit", "5:00", "10:00", "15:00", "20:00", "30:00", "45:00", "1:00:00", "1:15:00", "1:30:00", "1:45:00", "2:00:00"}
-			    }
-			}
 
-			-- Create the widget
-			local pickerWheel = widget.newPickerWheel
-			{
-			    top = display.contentHeight - 222,
-			    columns = gameLength
-			}
-
-
-		end
-
-		local gameSelect = widget.newButton{
-	        left = xCenter + 125,
-	        top = 425,
-	        label = "Length of Game",
-	        fontSize = 20,
-	        onRelease = GLbutton; 
-	    }
+	gameLength = native.newTextField( xCenter + 270,450, xCenter, 100)
+		gameLength.inputType = "default"
+		gameLength.size = "10"
 
 	-------------------------------------------
 	-- Configure pickerwheel for length of game
 	-------------------------------------------
 	--labels = { "On Creation","1:00","5:00","8:00","10:00","20:00","30:00","45:00" }
-	local function TTSbutton ()
-			local gameStart = 
-			{
-			    -- gameTypes
-			    { 
-			        align = "left",
-			        width = 140,
-			        startIndex = 1,
-			        labels = { "On Creation","1:00","5:00","8:00","10:00","20:00","30:00","45:00"}
-			    }
-			}
+	TTS = native.newTextField( xCenter + 270,550, xCenter, 100)
+		TTS.inputType = "default"
+		TTS.size = "10"
 
-			-- Create the widget
-			local pickerWheel = widget.newPickerWheel
-			{
-			    top = display.contentHeight - 222,
-			    columns = gameStart
-			}
+	-------------------------------------------
+	-- Configure save&go button
+	-------------------------------------------
+	local function toGame( event )
+		composer.gotoScene("inGame", {effect = "fade", time = 3000,})
+	end
 
-
-		end
-
-		local gameSelect = widget.newButton{
-	        left = xCenter + 125,
-	        top = 525,
-	        label = "Time to Start",
-	        fontSize = 20,
-	        onRelease = TTSbutton; 
-	    }
-	
-
-	-- Get the table of current values for all columns
-	-- This can be performed on a button tap, timer execution, or other event
+	local SAG = widget.newButton
+	{
+		id = SAG,
+	    label = "Save & Go!",
+	    font = nil,
+	    fontSize = 50,
+	    emboss = true,
+	    shape="roundedRect",
+	    width = display.contentWidth/2,
+	    height = 100,
+	    x = xCenter,
+	    y = yCenter+yCenter/2,
+	    cornerRadius = 50,
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+	    onEvent = toGame
+	}
 
 	localGroup:insert(yAxis)
     localGroup:insert(xAxis_00)
@@ -173,11 +118,18 @@ function scene:create( event )
     localGroup:insert(xAxis_03)
     localGroup:insert(xAxis_04)
     localGroup:insert(xAxis_05)
+--display instructions
     localGroup:insert(GameName)
-    localGroup:insert(numTeam)
-    localGroup:insert(numCapt)
-    localGroup:insert(timeLimit)
-    localGroup:insert(timeBegin)
+	localGroup:insert(numTeam)
+	localGroup:insert(numCapt)
+	localGroup:insert(timeLimit)
+	localGroup:insert(timeBegin)
+--text boxes
+    localGroup:insert(gameType)
+    localGroup:insert(teamNum)
+    localGroup:insert(capNum)
+    localGroup:insert(gameLength)
+    localGroup:insert(TTS)
 
 end
 
@@ -189,8 +141,7 @@ end
 
 
 function scene:hide(event)
-localGroup.alpha = 0
-
+	localGroup.alpha = 0
 end
 
 

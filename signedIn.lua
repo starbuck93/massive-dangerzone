@@ -18,6 +18,19 @@ end
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
+
+    local back = widget.newButton{
+        width = 200,
+	 	height = 75,
+        left = 0,
+        top = 0,
+        id = "BtM",
+        label = "Back to Menu",
+        fontSize = 40,
+        onRelease = function() composer.gotoScene("menu"); end,
+    }
+
+
 	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,50)
 	local welcomeText2 = display.newText("Please select a game to join.",xCenter,yCenter-350,nil,50)
 	local game1 = widget.newButton
@@ -86,8 +99,7 @@ function scene:show(event)
 end
 
 function scene:hide(event)
-localGroup.alpha = 0
-
+	localGroup.alpha = 0
 end
 
 -- "createScene" is called whenever the scene is FIRST called

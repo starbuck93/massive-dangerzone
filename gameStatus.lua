@@ -19,13 +19,14 @@ function scene:create( event )
 
 
     local back = widget.newButton{
+        width = 200,
+        height = 75,
         left = 0,
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 30,
-        location = composer.getSceneName( "previous" ),
-        onRelease = function() imReady.alpha=0; composer.gotoScene(location); end,
+        fontSize = 40,
+        onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
 

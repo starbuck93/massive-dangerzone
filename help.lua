@@ -25,16 +25,18 @@ function scene:create( event )
 	local contact2 = display.newText( "rap10c@acu.edu", xCenter, yCenter + 150, nil, 48 )
 
 	 local back = widget.newButton{
+	 	width = 200,
+	 	height = 75,
         left = 0,
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 30,
+        fontSize = 40,
         location = composer.getSceneName( "previous" ),
         onRelease = function() composer.gotoScene(location); end,
     }
-
     location = composer.getSceneName( "previous" )
+	
 	localGroup:insert( intro )
 	localGroup:insert( contact )
 	localGroup:insert( contact2 )

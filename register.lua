@@ -36,13 +36,14 @@ end
 function scene:create( event )
 
     local back = widget.newButton{
+        width = 200,
+	 	height = 75,
         left = 0,
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 30,
-        location = composer.getSceneName( "previous" ),
-        onRelease = function() composer.gotoScene(location); end,
+        fontSize = 40,
+        onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
 
@@ -69,17 +70,16 @@ function scene:create( event )
 		username = username
 		}, onRegisterEvent)
 		coronium:addEvent( "registerUEvent", "register" .. email )
+		sentEmail = native.showAlert("Thank you for registering!", "You will recieve an email shortly. Along with some roses and a box of chocolates.", {"Ok, Thanks!"})
 	end
 
 
-	local options = {text ="Please enter the information required. Good luck out there!", x = display.contentCenterX, y = 150, font = native.systemFont, fontSize = 50,width = display.actualContentWidth,align = "center"}
+	local options = {text ="Please enter the information required. Good luck out there!", x = display.contentCenterX, y = 200, font = native.systemFont, fontSize = 50,width = display.actualContentWidth,align = "center"}
 	local instruct = display.newText(options)
 	local text4 = display.newText("Email:",xCenter/2-200,yCenter/4+150,nil,36)
 	local text1 = display.newText("Username:",xCenter/2-200,yCenter/4+250,nil,36)
 	local text2 = display.newText("Password:",xCenter/2-200,yCenter/4+350,nil,36)
 	local text3 = display.newText({text="Confirm Password:",x=xCenter/2-200,y=yCenter/4+450,font=nil,fontSize=36,width = xCenter/2-50, align="center"})
-
-
 
 	local submit = widget.newButton
 	{
@@ -184,13 +184,13 @@ function scene:show(event)
 end
 
 function scene:hide(event)
-	localGroup:removeSelf( )
+	localGroup.alpha = 0
+-- localGroup:removeSelf( )
 -- emailBox:removeSelf( )
 -- usernameBox:removeSelf( )
 -- passwordBox:removeSelf( )
 -- passwordBox2:removeSelf( )
 end
-
 
 
 -- "createScene" is called whenever the scene is FIRST called

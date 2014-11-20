@@ -67,7 +67,7 @@ function scene:show(event)
 end
 
 function scene:hide(event)
-localGroup.alpha = 0
+	localGroup.alpha = 0
 
 end
 

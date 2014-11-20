@@ -152,7 +152,8 @@ function scene:show(event)
 end
 
 function scene:hide(event)
-	localGroup:removeSelf( )
+	localGroup.alpha = 0
+	-- localGroup:removeSelf( )
 	-- emailBox:removeSelf( )
 	-- passwordBox:removeSelf( )
 end

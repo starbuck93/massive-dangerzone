@@ -19,17 +19,6 @@ end
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
-    local back = widget.newButton{
-        width = 200,
-	 	height = 75,
-        left = 0,
-        top = 0,
-        id = "BtM",
-        label = "Back to Menu",
-        fontSize = 40,
-        onRelease = function() composer.gotoScene("menu"); end,
-    }
-
 
 	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,50)
 	local welcomeText2 = display.newText("Please select a game to join.",xCenter,yCenter-350,nil,50)
@@ -46,7 +35,7 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    onEvent = moveScenes
+	    onRelease = moveScenes
 	}
 	game1.x = xCenter
 	game1.y = yCenter

@@ -107,7 +107,8 @@ function scene:create( event )
     localGroup:insert(numCapt)
     localGroup:insert(timeLimit)
     localGroup:insert(timeBegin) 
-    localGroup:insert(back)    
+    localGroup:insert(back)
+    localGroup:insert(killGame)    
 
     localGroup:toFront() --nice
 end

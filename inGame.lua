@@ -49,7 +49,7 @@ function scene:create( event )
 	x = xCenter, 
 	y = yCenter, 
 	font = native.systemFont, 
-	fontSize = 50,
+	fontSize = 40,
 	width = display.actualContentWidth-60,
 	align = "center"}
 
@@ -88,6 +88,15 @@ function scene:create( event )
 ---------------------------------
 --configure gameplay time
 ---------------------------------
+	local GTtext = display.newText{
+	text ="Time Remaining in Game:", 
+	x = xCenter, 
+	y = yCenter + 250, 
+	font = native.systemFont, 
+	fontSize = 50,
+	width = display.actualContentWidth-60,
+	align = "center"}
+
 	local GTbackground = display.newRoundedRect( xCenter, yCenter+350, 275, 100, 25 )
 	GTbackground:setFillColor( .6,.6,.6 )
 	GTbackground:toBack()
@@ -125,6 +134,7 @@ function scene:create( event )
 	--localGroup:insert()
 	--localGroup:insert()
 	localGroup:insert(goToOptions)
+	localGroup:insert(GTtext)
 
 
 end

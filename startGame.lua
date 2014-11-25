@@ -130,6 +130,8 @@ function scene:create( event )
     localGroup:insert(capNum)
     localGroup:insert(gameLength)
     localGroup:insert(TTS)
+    localGroup:insert(SAG)
+    localGroup:insert(back)
 
 end
 

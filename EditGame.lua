@@ -1,6 +1,5 @@
-
 --====================================================================--
--- SCENE: signed in
+-- SCENE: editGame
 --====================================================================--
 
 	
@@ -12,7 +11,7 @@ local localGroup = display.newGroup()
 local function moveScenes( event )
 	--if event.phase == "ended" then
 		--print("Ended")
-	composer.gotoScene("playerGameStatus", {effect = "fade", time = 1000})
+	composer.gotoScene("adminGameStatus", {effect = "fade", time = 1000})
 	--end
 end
 
@@ -21,7 +20,7 @@ function scene:create( event )
 
 
 	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,50)
-	local welcomeText2 = display.newText("Please select a game to join:",xCenter,yCenter-350,nil,50)
+	local welcomeText2 = display.newText("Please select a game to edit:",xCenter,yCenter-350,nil,50)
 	local game1 = widget.newButton
 	{
 	    label = "Team Deathmatch",
@@ -36,45 +35,11 @@ function scene:create( event )
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
 	    onRelease = moveScenes
+	   
 	}
 	game1.x = xCenter
 	game1.y = yCenter
 
-	
-	-- local tabButtons = {
-	--     {
-	--         label = "Main Menu",
-	--         size = 36,
-	--         id = "tab1",
-	--         selected = true,
-	--         labelYOffset = -25,
-	--         onPress = function() composer.gotoScene( "menu" ); end,
-	--     },
-	--     {
-	--         label = "Login",
-	--         size = 36,
-	--         id = "tab2",
-	--         labelYOffset = -25,
-	--         onPress = function() composer.gotoScene( "login" ); end,
-	--     },
-	--     {
-	--         label = "Register",
-	--         size = 36,
-	--         id = "tab3",
-	--         labelYOffset = -25,
-	--         onPress = function() composer.gotoScene( "register" ); end,
-	--     },
-	-- }
-
-
-	-- Create the widget
-	-- local tabBar = widget.newTabBar
-	-- {
-	--     top = yCenter-100,
-	--     width = xCenter,
-	--     height = 100,
-	--     buttons = tabButtons
-	-- }	
 
 	localGroup:insert(welcomeText)
 	localGroup:insert(welcomeText2)
@@ -100,4 +65,3 @@ scene:addEventListener( "show", scene )
 -- "exitScene" event is dispatched before next scene's transition begins
 scene:addEventListener( "hide", scene )
 	return scene
-

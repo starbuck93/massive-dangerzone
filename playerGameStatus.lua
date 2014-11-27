@@ -25,7 +25,7 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 40,
+        fontSize = 50,
         onRelease = function() composer.gotoScene("signedIn"); end,
     }
     location = composer.getSceneName( "previous" )

@@ -6,7 +6,7 @@ local scene = composer.newScene()
 
 function scene:create( event )
 	local goToOptions = widget.newButton{
-    width = 200,
+    width = 300,
 	height = 75,
     left = 0,
     top = 0,

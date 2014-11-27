@@ -42,7 +42,7 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 40,
+        fontSize = 50,
         onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -185,11 +185,11 @@ end
 
 function scene:hide(event)
 	localGroup.alpha = 0
--- localGroup:removeSelf( )
--- emailBox:removeSelf( )
--- usernameBox:removeSelf( )
--- passwordBox:removeSelf( )
--- passwordBox2:removeSelf( )
+	localGroup:removeSelf( )
+	emailBox:removeSelf( )
+	usernameBox:removeSelf( )
+	passwordBox:removeSelf( )
+	passwordBox2:removeSelf( )
 end
 
 

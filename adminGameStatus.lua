@@ -20,7 +20,7 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 40,
+        fontSize = 50,
         onRelease = function() composer.gotoScene("adminOptions"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -52,11 +52,12 @@ function scene:create( event )
     local timeBegin  = display.newText( "Game begins in:", xCenter-75, 650, nil, 36 )
 
 
-    local function killGameAlert()
-        kill = native.showAlert("Kill Game", "Are you sure you would like to kill the game?", {"Yes","No, I will spare this creature"}, onComplete)
+    local function leavePage ()
+        composer.gotoScene("adminOptions")
     end
 
-        -- Handler that gets notified when the alert closes
+
+    -- Handler that gets notified when the alert closes
     local function onComplete( event )
        if event.action == "clicked" then
             local i = event.index
@@ -64,14 +65,17 @@ function scene:create( event )
                 -- Do nothing; dialog will simply dismiss
             elseif i == 2 then
                 -- Open URL if "Learn More" (second button) was clicked
-                kill = native.showAlert( "Killed", "You have successfully killed the game.", {"Got it."}, leavePage)
+                native.showAlert( "Killed", "You have successfully killed the game.", {"Got it."})
+                composer.gotoScene("adminOptions")
             end
         end
     end
 
-    local function leavePage ()
-        composer.gotoScene("adminOptions")
+    -- Show alert with two buttons
+    local function killGameAlert( ... )
+        native.showAlert( "Kill Game?", "Are you sure you would like to kill the game?.", { "Cancel", "Yes" }, onComplete )
     end
+
 
     local killGame = widget.newButton
     {
@@ -86,7 +90,7 @@ function scene:create( event )
         cornerRadius = 50,
         labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
         fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-        onComplete = killGameAlert
+        onRelease = killGameAlert
     }
 
     killGame.x = xCenter
@@ -110,7 +114,7 @@ function scene:create( event )
     localGroup:insert(back)
     localGroup:insert(killGame)    
 
-    localGroup:toFront() --nice
+    --localGroup:toFront() --nice
 end
 
 function scene:show(event)

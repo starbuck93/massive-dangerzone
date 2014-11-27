@@ -14,7 +14,7 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 40,
+        fontSize = 50,
         onRelease = function() composer.gotoScene("adminOptions"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -144,6 +144,12 @@ end
 
 function scene:hide(event)
 	localGroup.alpha = 0
+--	localGroup:removeSelf( )
+--	gameType:removeSelf( )
+--     teamNum:removeSelf( )
+--     capNum:removeSelf( )
+--     gameLength:removeSelf( )
+--     TTS:removeSelf( )
 end
 
 

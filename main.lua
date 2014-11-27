@@ -35,7 +35,7 @@ help = widget.newButton --another global value that we can edit the alpha of
 {
 	id = "helpMe",
     label = "?",
-    fontSize = 40,
+    fontSize = 60,
     onRelease = helpFunction,
     --properties for a rounded rectangle button...
     shape="circle",

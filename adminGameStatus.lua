@@ -91,7 +91,7 @@ function scene:create( event )
         fontSize = 48,
         emboss = true,
         shape="roundedRect",
-        width = 400,
+        width = display.contentWidth/2,
         height = 100,
         cornerRadius = 50,
         labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },

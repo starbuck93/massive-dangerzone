@@ -19,16 +19,24 @@ function scene:create( event )
     }
     location = composer.getSceneName( "previous" )
 
+
+--a few global variables to store the input text in
+gameTypeText = ""
+teamNumText = ""
+capNumText = ""
+gameLengthText = ""
+TTSText = ""
+
 -------------------------------------------
 -- Configure display
 -------------------------------------------
-	local yAxis =    display.newLine( 450, 100, 450, 700 )
-    local xAxis_00 = display.newLine( 0, 100, 800, 100 )
-    local xAxis_01 = display.newLine( 0, 200, 800, 200 )
-    local xAxis_02 = display.newLine( 0, 300, 800, 300 )
-    local xAxis_03 = display.newLine( 0, 400, 800, 400 )
-    local xAxis_04 = display.newLine( 0, 500, 800, 500 )
-    local xAxis_05 = display.newLine( 0, 600, 800, 600 )
+	local yAxis =    display.newLine( xCenter, 100, xCenter, 600 )
+    local xAxis_00 = display.newLine( 0, 100, display.contentWidth, 100 )
+    local xAxis_01 = display.newLine( 0, 200, display.contentWidth, 200 )
+    local xAxis_02 = display.newLine( 0, 300, display.contentWidth, 300 )
+    local xAxis_03 = display.newLine( 0, 400, display.contentWidth, 400 )
+    local xAxis_04 = display.newLine( 0, 500, display.contentWidth, 500 )
+    local xAxis_05 = display.newLine( 0, 600, display.contentWidth, 600 )
 
 
     yAxis.strokeWidth    = 3
@@ -40,11 +48,57 @@ function scene:create( event )
     xAxis_05.strokeWidth = 3
   
 
-    local GameName   = display.newText( "Game Name:", xCenter-50, 150, nil, 36 )
-    local numTeam	 = display.newText( "# of teams:", xCenter-90, 250, nil, 36 )
+    local GameName   = display.newText( "*Game Name:", xCenter-50, 150, nil, 36 )
+    local numTeam	 = display.newText( "*# of teams:", xCenter-90, 250, nil, 36 )
     local numCapt    = display.newText( "# of captains per team:", xCenter-125, 350, nil, 36 )
     local timeLimit  = display.newText( "Time Limit:", xCenter-30, 450, nil, 36 )
-    local timeBegin  = display.newText( "Game begins in:", xCenter-75, 550, nil, 36 )
+    local timeBegin  = display.newText( "*Game begins in:", xCenter-75, 550, nil, 36 )
+
+
+--Functions for capturing the text from the text boxes--
+
+	local function gameTypeTextListener( event )
+	    if ( event.phase == "began" ) then
+	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+	    	gameTypeText = event.target.text
+	       	-- native.setKeyboardFocus( nil )
+	    elseif ( event.phase == "editing" ) then
+	    end
+	end
+	local function teamNumTextListener( event )
+	    if ( event.phase == "began" ) then
+	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+	    	teamNumText = event.target.text
+	       	-- native.setKeyboardFocus( nil )
+	    elseif ( event.phase == "editing" ) then
+	    end
+	end
+	local function capNumTextListener( event )
+	    if ( event.phase == "began" ) then
+	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+	    	capNumText = event.target.text
+	       	-- native.setKeyboardFocus( nil )
+	    elseif ( event.phase == "editing" ) then
+	    end
+	end
+	local function gameLengthTextListener( event )
+	    if ( event.phase == "began" ) then
+	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+	    	gameLengthText = event.target.text
+	       	-- native.setKeyboardFocus( nil )
+	    elseif ( event.phase == "editing" ) then
+	    end
+	end
+	local function TTSTextListener( event )
+	    if ( event.phase == "began" ) then
+	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+	    	TTSText = event.target.text
+	       	-- native.setKeyboardFocus( nil )
+	    elseif ( event.phase == "editing" ) then
+	    end
+	end
+
+
 
 
 -------------------------------------------
@@ -54,43 +108,65 @@ function scene:create( event )
 	gameType = native.newTextField( xCenter + 270,150, xCenter, 100)
 		gameType.inputType = "default"
 		gameType.size = "10"
+		gameType.placeholder = "(Text Name)"
+	gameType:addEventListener( "userInput", gameTypeTextListener )
 
-    -------------------------------------------
-	-- Configure textBox for #of teams
-	-------------------------------------------
+-------------------------------------------
+-- Configure textBox for #of teams
+-------------------------------------------
 	teamNum = native.newTextField( xCenter + 270,250, xCenter, 100)
-		teamNum.inputType = "default"
+		teamNum.inputType = "number"
 		teamNum.size = "10"
+		teamNum.placeholder = "(1, 2, 3, 4)"
+	teamNum:addEventListener( "userInput", teamNumTextListener )
 
-	-------------------------------------------
-	-- Configure textBox for #captains per team
-	-------------------------------------------
+-------------------------------------------
+-- Configure textBox for #captains per team
+-------------------------------------------
 	capNum = native.newTextField( xCenter + 270,350, xCenter, 100)
-		capNum.inputType = "default"
+		capNum.inputType = "number"
 		capNum.size = "10"
+		capNum.placeholder = "(integer number)"
+	capNum:addEventListener( "userInput", capNumTextListener )
 
-	-------------------------------------------
-	-- Configure pickerwheel for time-to-start
-	-------------------------------------------
+-------------------------------------------
+-- Configure textBox for time-to-start
+-------------------------------------------
 	--labels = {  "No time Limit", "5:00", "10:00", "15:00", "20:00", "30:00", "45:00", "1:00:00", "1:15:00", "1:30:00", "1:45:00", "2:00:00"}
 
 	gameLength = native.newTextField( xCenter + 270,450, xCenter, 100)
-		gameLength.inputType = "default"
+		gameLength.inputType = "number"
 		gameLength.size = "10"
+		gameLength.placeholder = "(military time, HHMM)"
+	gameLength:addEventListener( "userInput", gameLengthTextListener )
 
-	-------------------------------------------
-	-- Configure pickerwheel for length of game
-	-------------------------------------------
+-------------------------------------------
+-- Configure textBox for length of game
+-------------------------------------------
 	--labels = { "On Creation","1:00","5:00","8:00","10:00","20:00","30:00","45:00" }
 	TTS = native.newTextField( xCenter + 270,550, xCenter, 100)
-		TTS.inputType = "default"
+		TTS.inputType = "number"
 		TTS.size = "10"
+		TTS.placeholder = "(integer, minutes)"
+	TTS:addEventListener( "userInput", TTSTextListener )
 
-	-------------------------------------------
-	-- Configure save&go button
-	-------------------------------------------
+-------------------------------------------
+-- Configure save&go button
+-------------------------------------------
+local errorText = display.newText{
+	text = "Required field: Game Name", 
+	x = xCenter, 
+	y = yCenter+100, 
+	font = native.systemFont, 
+	fontSize = 50,
+	width = display.actualContentWidth-60,
+	align = "center"}
+	errorText:setFillColor( 1,0,0 )
+
 	local function toGame( event )
-		composer.gotoScene("inGame", {effect = "fade", time = 3000,})
+		-- if gameTypeText ~= "" then
+			composer.gotoScene("inGame", {effect = "fade", time = 3000,})
+		-- else errorText.text = "Required field: Game Name"
 	end
 
 	local SAG = widget.newButton

@@ -38,7 +38,6 @@ function scene:create( event )
 	end
 	local function login( event )
 		coronium:loginUser(email,password,onLoginEvent)
-		
 	end
 
 	local function onLoginEventAdmin( event )
@@ -95,7 +94,7 @@ function scene:create( event )
 	    cornerRadius = 50,
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	    --onRelease= loginEventAdmin
+	    -- onRelease= loginEventAdmin
 	    onRelease = composer.gotoScene("adminOptions", {effect = "fade", time = 3000,})
 	}
 
@@ -119,7 +118,6 @@ function scene:create( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
 	    	email = event.target.text
-	       	native.setKeyboardFocus( passwordBox )
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end

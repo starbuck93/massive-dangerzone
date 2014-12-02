@@ -26,6 +26,7 @@ coronium:appOpened() --analytics
 email = "default"
 username = "default"
 
+
 function helpFunction()
 	composer:gotoScene("help")
 	--coronium:addEvent( "helpEvent", "Help! " .. username)

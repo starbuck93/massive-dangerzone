@@ -22,13 +22,17 @@ local function onRunReturn( event )
     end
 end
 
+  print(os.date())
+
 local function getTime( )
-  coronium:run( "answer", { objectid = objId }, onRunReturn)
+  coronium:run( "retrieveTime", { objectid = objId }, onRunReturn)
 end
 
 
 local function setTime( )
   coronium:run( "setTime", { startTime = beginTime })
+  --then somehow set the objId here
+
 end
 
 

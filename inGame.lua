@@ -111,7 +111,7 @@ function scene:create( event )
 	align = "center"}
 
 	local time_02 = 78
-	local function decreaseTime()
+	local function decreaseTime2()
 	   time_02 = time_02-1
 	   local seconds = time_02%60
 	   local minutes = math.floor(time_02 / 60)
@@ -121,7 +121,7 @@ function scene:create( event )
 	   ti_02.text =minutes .. ":" .. seconds
 	end
 
-	timer.performWithDelay(1000,decreaseTime,time_02)
+	timer.performWithDelay(1000,decreaseTime2,time_02)
 
 	localGroup:insert(preTeam)
 	localGroup:insert(teamSelection)

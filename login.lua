@@ -155,9 +155,8 @@ end
 
 function scene:hide(event)
 	localGroup.alpha = 0
-	-- localGroup:removeSelf( )
-	emailBox:removeSelf( )
-	passwordBox:removeSelf( )
+	localGroup:removeSelf( )
+	composer.removeScene("login")
 end
 
 -- "createScene" is called whenever the scene is FIRST called

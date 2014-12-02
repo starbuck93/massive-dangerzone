@@ -125,6 +125,7 @@ end
 
 function scene:hide(event)
     localGroup.alpha = 0
+    --composer.removeScene("adminGameStatus")
 end
 
 

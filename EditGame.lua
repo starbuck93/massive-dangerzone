@@ -18,6 +18,19 @@ end
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
+	    local back = widget.newButton{
+        width = 200,
+	 	height = 75,
+        left = 0,
+        top = 0,
+        id = "back",
+        label = "<-- back",
+        fontSize = 50,
+        onRelease = function() composer.gotoScene("adminOptions"); end,
+    }
+    location = composer.getSceneName( "previous" )
+
+
 
 	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,50)
 	local welcomeText2 = display.newText("Please select a game to edit:",xCenter,yCenter-350,nil,50)
@@ -40,7 +53,7 @@ function scene:create( event )
 	game1.x = xCenter
 	game1.y = yCenter
 
-
+	localGroup:insert(back)
 	localGroup:insert(welcomeText)
 	localGroup:insert(welcomeText2)
 	localGroup:insert(game1)

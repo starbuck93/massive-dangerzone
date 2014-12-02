@@ -132,7 +132,6 @@ function scene:create( event )
     localGroup:insert(TTS)
     localGroup:insert(SAG)
     localGroup:insert(back)
-
 end
 
 
@@ -144,12 +143,8 @@ end
 
 function scene:hide(event)
 	localGroup.alpha = 0
---	localGroup:removeSelf( )
---	gameType:removeSelf( )
---     teamNum:removeSelf( )
---     capNum:removeSelf( )
---     gameLength:removeSelf( )
---     TTS:removeSelf( )
+	localGroup:removeSelf( )
+	composer.removeScene("startGame")
 end
 
 

@@ -186,10 +186,11 @@ end
 function scene:hide(event)
 	localGroup.alpha = 0
 	localGroup:removeSelf( )
-	emailBox:removeSelf( )
-	usernameBox:removeSelf( )
-	passwordBox:removeSelf( )
-	passwordBox2:removeSelf( )
+	composer.removeScene("register")
+	-- emailBox:removeSelf( )
+	-- usernameBox:removeSelf( )
+	-- passwordBox:removeSelf( )
+	-- passwordBox2:removeSelf( )
 end
 
 
@@ -205,4 +206,4 @@ scene:addEventListener( "hide", scene )
 
 
 
-	return scene
+return scene

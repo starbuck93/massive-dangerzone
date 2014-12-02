@@ -17,12 +17,12 @@ function scene:create( event )
 	x = display.contentCenterX, 
 	y = 300, 
 	font = native.systemFont, 
-	fontSize = 50,
+	fontSize = font2,
 	width = display.actualContentWidth-60,
 	align = "center"}
 	local intro=display.newText(options)
-	local contact = display.newText( "acs11e@acu.edu", xCenter, yCenter + 100, nil, 48 )
-	local contact2 = display.newText( "rap10c@acu.edu", xCenter, yCenter + 150, nil, 48 )
+	local contact = display.newText( "acs11e@acu.edu", xCenter, yCenter + 100, nil, font2 )
+	local contact2 = display.newText( "rap10c@acu.edu", xCenter, yCenter + 150, nil, font2 )
 
 	 local back = widget.newButton{
 	 	width = 200,
@@ -31,7 +31,7 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 50,
+        fontSize = font2,
         location = composer.getSceneName( "previous" ),
         onRelease = function() composer.gotoScene(location); end,
     }

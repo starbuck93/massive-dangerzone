@@ -13,7 +13,7 @@ function scene:create( event )
     	top = 0,
     	id = "back",
    		label = "<-- back",
-   		fontSize = 50,
+   		fontSize = font2,
    		onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -28,7 +28,7 @@ function scene:create( event )
 	x = display.contentCenterX, 
 	y = 300, 
 	font = native.systemFont, 
-	fontSize = 45,
+	fontSize = font1,
 	width = display.actualContentWidth-60,
 	align = "center"}
 
@@ -52,7 +52,7 @@ function scene:create( event )
 	{
 	    label = "Start",
 	    font = nil,
-	    fontSize = 70,
+	    fontSize = font4,
 	    emboss = true,
 	    shape="roundedRect",
 	    width = xCenter/2,
@@ -66,7 +66,7 @@ function scene:create( event )
 	{
 	    label = "Edit",
 	    font = nil,
-	    fontSize = 70,
+	    fontSize = font4,
 	    emboss = true,
 	    shape="roundedRect",
 	    width = xCenter/2,
@@ -80,7 +80,7 @@ function scene:create( event )
 	{
 	    label = "Resume",
 	    font = nil,
-	    fontSize = 70,
+	    fontSize = font4,
 	    emboss = true,
 	    shape="roundedRect",
 	    width = xCenter/2,

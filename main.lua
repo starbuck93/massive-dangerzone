@@ -26,6 +26,23 @@ coronium:appOpened() --analytics
 email = "default"
 username = "default"
 
+font1 = 34
+font2 = 48
+font3 = 60
+font4 = 70
+font5 = 80
+
+if display.contentWidth < 720 and display.contentHeight < 1080 then
+	font1 = font1-(font1*0.1)
+	font2 = font2-(font2*0.1) 
+	font3 = font3-(font3*0.1)
+	font4 = font4-(font4*0.1)
+	font5 = font5-(font5*0.1)
+end   
+
+
+
+
 function helpFunction()
 	composer:gotoScene("help")
 	--coronium:addEvent( "helpEvent", "Help! " .. username)
@@ -48,7 +65,6 @@ help = widget.newButton --another global value that we can edit the alpha of
 help.x = display.contentWidth-50
 help.y = display.contentHeight-50
 help.alpha = 0
-
 
 
 --splash screen, then menu

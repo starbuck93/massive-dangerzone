@@ -42,7 +42,7 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 50,
+        fontSize = font2,
         onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -74,18 +74,22 @@ function scene:create( event )
 	end
 
 
-	local options = {text ="Please enter the information required. Good luck out there!", x = display.contentCenterX, y = 200, font = native.systemFont, fontSize = 50,width = display.actualContentWidth,align = "center"}
+	local options = {text ="Please enter the information required. Good luck out there!", x = display.contentCenterX, y = 200, font = native.systemFont, fontSize = font2,width = display.actualContentWidth,align = "center"}
 	local instruct = display.newText(options)
-	local text4 = display.newText("Email:",xCenter/2-200,yCenter/4+150,nil,36)
-	local text1 = display.newText("Username:",xCenter/2-200,yCenter/4+250,nil,36)
-	local text2 = display.newText("Password:",xCenter/2-200,yCenter/4+350,nil,36)
-	local text3 = display.newText({text="Confirm Password:",x=xCenter/2-200,y=yCenter/4+450,font=nil,fontSize=36,width = xCenter/2-50, align="center"})
+	local text4 = display.newText("Email:",5,yCenter/4+150,nil,font1)
+	text4.anchorX = 0
+	local text1 = display.newText("Username:",5,yCenter/4+250,nil,font1)
+	text1.anchorX = 0
+	local text2 = display.newText("Password:",5,yCenter/4+350,nil,font1)
+	text2.anchorX = 0
+	local text3 = display.newText({text="Confirm Password:",5,y=yCenter/4+450,font=nil,fontSize=font1,width = xCenter/2-50})
+	text3.anchorX = 0
 
 	local submit = widget.newButton
 	{
 	    label = "Submit",
 	    font = nil,
-	    fontSize = 48,
+	    fontSize = font2,
 	    emboss = true,
 	    shape="roundedRect",
 	    width = display.contentWidth/2,

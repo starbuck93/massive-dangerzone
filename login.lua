@@ -25,7 +25,7 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 50,
+        fontSize = font2,
         onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -72,7 +72,7 @@ function scene:create( event )
 	{
 	    label = "Submit",
 	    font = nil,
-	    fontSize = 70,
+	    fontSize = font4,
 	    emboss = true,
 	    shape="roundedRect",
 	    width = display.contentWidth/2,
@@ -87,7 +87,7 @@ function scene:create( event )
 	{
 	    label = "Admin?",
 	    font = nil,
-	    fontSize = 70,
+	    fontSize = font4,
 	    emboss = true,
 	    shape="roundedRect",
 	    width = display.contentWidth/2,

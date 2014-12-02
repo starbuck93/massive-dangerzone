@@ -12,7 +12,7 @@ function scene:create( event )
     top = 0,
     id = "options",
     label = "Admin Options",
-    fontSize = 40,
+    fontSize = font2,
     onRelease = function() composer.gotoScene("adminOptions"); end,
     }
 
@@ -22,7 +22,7 @@ function scene:create( event )
 	x = xCenter, 
 	y = yCenter/3, 
 	font = native.systemFont, 
-	fontSize = 50,
+	fontSize = font2,
 	width = display.actualContentWidth-60,
 	align = "center"}
 
@@ -31,7 +31,7 @@ function scene:create( event )
 	x = xCenter, 
 	y = yCenter/2, 
 	font = native.systemFont, 
-	fontSize = 74,
+	fontSize = font3,
 	width = display.actualContentWidth-60,
 	align = "center"}
 
@@ -40,7 +40,7 @@ function scene:create( event )
 	x = xCenter, 
 	y = yCenter/1.5, 
 	font = native.systemFont, 
-	fontSize = 50,
+	fontSize = font2,
 	width = display.actualContentWidth-60,
 	align = "center"}
 
@@ -49,7 +49,7 @@ function scene:create( event )
 	x = xCenter, 
 	y = yCenter, 
 	font = native.systemFont, 
-	fontSize = 40,
+	fontSize = font1,
 	width = display.actualContentWidth-60,
 	align = "center"}
 
@@ -68,7 +68,7 @@ function scene:create( event )
 	x = xCenter, 
 	y = yCenter+100, 
 	font = native.systemFont, 
-	fontSize = 50,
+	fontSize = font2,
 	width = display.actualContentWidth-60,
 	align = "center"}
 
@@ -93,7 +93,7 @@ function scene:create( event )
 	x = xCenter, 
 	y = yCenter + 250, 
 	font = native.systemFont, 
-	fontSize = 50,
+	fontSize = font2,
 	width = display.actualContentWidth-60,
 	align = "center"}
 
@@ -106,7 +106,7 @@ function scene:create( event )
 	x = xCenter, 
 	y = yCenter+350, 
 	font = native.systemFont, 
-	fontSize = 80,
+	fontSize = font4,
 	width = display.actualContentWidth-60,
 	align = "center"}
 

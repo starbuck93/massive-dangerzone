@@ -20,13 +20,13 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 50,
+        fontSize = font2,
         onRelease = function() composer.gotoScene("adminOptions"); end,
     }
     location = composer.getSceneName( "previous" )
 
     nerfImage.alpha = 0 --a global value
-    local yAxis =     display.newLine( 450, 100, 450, 700 )
+    local yAxis =     display.newLine( xCenter, 100, xCenter, 700 )
     local xAxis_00 = display.newLine( 0, 100, 800, 100 )
     local xAxis_01 = display.newLine( 0, 200, 800, 200 )
     local xAxis_02 = display.newLine( 0, 300, 800, 300 )
@@ -44,12 +44,18 @@ function scene:create( event )
     xAxis_05.strokeWidth = 3
     xAxis_06.strokeWidth = 3
 
-    local GameName   = display.newText( "Game Details:", xCenter-50, 150, nil, 36 )
-    local numPlayers = display.newText( "# of joined players:", xCenter-90, 250, nil, 36 )
-    local numTeams   = display.newText( "# of teams in game:", xCenter-100, 350, nil, 36 )
-    local numCapt    = display.newText( "# of captains per team:", xCenter-125, 450, nil, 36 )
-    local timeLimit  = display.newText( "Time Limit:", xCenter-30, 550, nil, 36 )
-    local timeBegin  = display.newText( "Game begins in:", xCenter-75, 650, nil, 36 )
+    local GameName   = display.newText( "Game Details:", 5, 150, nil, font1 )
+    GameName.anchorX = 0
+    local numPlayers = display.newText( "# of joined players:", 5, 250, nil, font1 )
+    numPlayers.anchorX = 0
+    local numTeams   = display.newText( "# of teams in game:", 5, 350, nil, font1 )
+    numTeams.anchorX = 0
+    local numCapt    = display.newText( "# of captains per team:", 5, 450, nil, font1 )
+    numCapt.anchorX = 0
+    local timeLimit  = display.newText( "Time Limit:",5, 550, nil, font1 )
+    timeLimit.anchorX = 0
+    local timeBegin  = display.newText( "Game begins in:", 5, 650, nil, font1 )
+    timeBegin.anchorX = 0
 
 
     local function leavePage ()

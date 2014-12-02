@@ -14,7 +14,7 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 50,
+        fontSize = font2,
         onRelease = function() composer.gotoScene("adminOptions"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -48,12 +48,16 @@ TTSText = ""
     xAxis_05.strokeWidth = 3
   
 
-    local GameName   = display.newText( "*Game Name:", xCenter-50, 150, nil, 36 )
-    local numTeam	 = display.newText( "*# of teams:", xCenter-90, 250, nil, 36 )
-    local numCapt    = display.newText( "# of captains per team:", xCenter-125, 350, nil, 36 )
-    local timeLimit  = display.newText( "Time Limit:", xCenter-30, 450, nil, 36 )
-    local timeBegin  = display.newText( "*Game begins in:", xCenter-75, 550, nil, 36 )
-
+    local GameName   = display.newText( "Game Name:", 10, 150, nil, font1 )
+    GameName.anchorX = 0
+    local numTeam	 = display.newText( "# of teams:", 10, 250, nil, font1 )
+    numTeam.anchorX = 0
+    local numCapt    = display.newText( "# of captains per team:", 10, 350, nil, font1 )
+    numCapt.anchorX = 0
+    local timeLimit  = display.newText( "Time Limit:", 10, 450, nil, font1 )
+    timeLimit.anchorX = 0
+    local timeBegin  = display.newText( "Game begins in:", 10, 550, nil, font1 )
+    timeBegin.anchorX = 0
 
 --Functions for capturing the text from the text boxes--
 
@@ -97,7 +101,6 @@ TTSText = ""
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end
-
 
 
 
@@ -174,7 +177,7 @@ local errorText = display.newText{
 		id = SAG,
 	    label = "Save & Go!",
 	    font = nil,
-	    fontSize = 50,
+	    fontSize = font2,
 	    emboss = true,
 	    shape="roundedRect",
 	    width = display.contentWidth/2,

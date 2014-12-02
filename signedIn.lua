@@ -20,14 +20,14 @@ end
 function scene:create( event )
 
 
-	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,50)
-	local welcomeText2 = display.newText("Please select a game to join:",xCenter,yCenter-350,nil,50)
+	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,font2)
+	local welcomeText2 = display.newText("Please select a game to join:",xCenter,yCenter-350,nil,font2)
 	local game1 = widget.newButton
 	{
 	    label = "Team Deathmatch",
 	    labelColor = {default ={1,1,1,1}, over={1,0,0,1} },
 	    font = nil,
-	    fontSize = 48,
+	    fontSize = font2,
 	    emboss = true,
 	    shape="roundedRect",
 	    width = xCenter*2-50,

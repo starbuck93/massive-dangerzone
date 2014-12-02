@@ -13,7 +13,7 @@ local localGroup = display.newGroup()
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
-    local options ={text="I'm Ready!", x=display.contentCenterX, y = display.contentCenterY+550, font=native.systemFont, fontSize=30, width= display.actualContentWidth, align="center"}
+    local options ={text="I'm Ready!", x=display.contentCenterX, y = display.contentCenterY+550, font=native.systemFont, fontSize=font1, width= display.actualContentWidth, align="center"}
     local imReady = display.newText(options)
     imReady.alpha=0
 
@@ -25,7 +25,7 @@ function scene:create( event )
         top = 0,
         id = "back",
         label = "<-- back",
-        fontSize = 50,
+        fontSize = font2,
         onRelease = function() composer.gotoScene("signedIn"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -49,19 +49,24 @@ function scene:create( event )
     xAxis_05.strokeWidth = 3
     xAxis_06.strokeWidth = 3
 
-    local GameName   = display.newText( "Game Details:", xCenter-50, 150, nil, 36 )
-    local numPlayers = display.newText( "# of joined players:", xCenter-90, 250, nil, 36 )
-    local numTeams   = display.newText( "# of teams in game:", xCenter-100, 350, nil, 36 )
-    local numCapt    = display.newText( "# of captains per team:", xCenter-125, 450, nil, 36 )
-    local timeLimit  = display.newText( "Time Limit:", xCenter-30, 550, nil, 36 )
-    local timeBegin  = display.newText( "Game begins in:", xCenter-75, 650, nil, 36 )
-
+    local GameName   = display.newText( "Game Details:", 10, 150, nil, font1 )
+    GameName.anchorX = 0
+    local numPlayers = display.newText( "# of joined players:", 10, 250, nil, font1 )
+    numPlayers.anchorX = 0
+    local numTeams   = display.newText( "# of teams in game:", 10, 350, nil, font1 )
+    numTeams.anchorX = 0
+    local numCapt    = display.newText( "# of captains per team:", 10, 450, nil, font1 )
+    numCapt.anchorX = 0
+    local timeLimit  = display.newText( "Time Limit:", 10, 550, nil, font1 )
+    timeLimit.anchorX = 0
+    local timeBegin  = display.newText( "Game begins in:", 10, 650, nil, font1 )
+    timeBegin.anchorX = 0
 
 
     --ready up
     readyRect = display.newRect( xCenter, yCenter, display.actualContentWidth , display.actualContentHeight )
     readyRect:setFillColor( 153/255,0,0 )
-    local ready = display.newText( "Ready Up!", xCenter, yCenter + 300, nil, 72 )
+    local ready = display.newText( "Ready Up!", xCenter, yCenter + 300, nil, font3 )
     readyRect:toBack()
 
 

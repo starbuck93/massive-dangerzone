@@ -190,6 +190,7 @@ local errorText = display.newText{
 	    onEvent = toGame
 	}
 
+	localGroup:insert(errorText)
 	localGroup:insert(yAxis)
     localGroup:insert(xAxis_00)
     localGroup:insert(xAxis_01)

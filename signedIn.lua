@@ -19,17 +19,19 @@ end
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
---retrieve the above variables and set them if they exist
---here is where we can grab any current games that are going on
---coronium:getObject( "testGameData", "ObjectID", function(e)
---		print(e.result.objectId)
---	end)
+	--retrieve the above variables and set them if they exist
+	--here is where we can grab any current games that are going on
+	coronium:getObject( "testGameData", objId, function(e)
+		if not e.error then
+				gameTypeText = tostring(e.result.gameType)
+			end
+	end)
 
 	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,font2)
 	local welcomeText2 = display.newText("Please select a game to join:",xCenter,yCenter-350,nil,font2)
 	local game1 = widget.newButton
 	{
-	    label = "Team Deathmatch",
+	    label = gameTypeText,
 	    labelColor = {default ={1,1,1,1}, over={1,0,0,1} },
 	    font = nil,
 	    fontSize = font2,

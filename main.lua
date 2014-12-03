@@ -1,5 +1,5 @@
 --project: FinalNoNameYet
---Adam Starbuck 2014
+--Adam Starbuck, Ryan Podany 2014
 
 globals = require( "globals" ) -- make this global
 coronium = require( "mod_coronium" ) -- make this global
@@ -39,7 +39,7 @@ capNumText = "1"
 gameLengthText = "60"
 TTSText = "10"
 
---very important... object ID
+--very important... object ID for the database thing
 objId = ""
 
 --retrieve the above variables and set them if they exist

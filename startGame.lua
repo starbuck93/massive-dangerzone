@@ -54,6 +54,17 @@ function scene:create( event )
     local timeBegin  = display.newText( "Game begins in:", 10, 550, nil, font1 )
     timeBegin.anchorX = 0
 
+    local errorText = display.newText{
+	text = "Please specify a game name such as 'Team Deathmatch' or 'Zombies'", 
+	x = xCenter, 
+	y = yCenter+yCenter/4, 
+	font = native.systemFont, 
+	fontSize = font1,
+	width = display.actualContentWidth-60,
+	align = "center",
+	}
+	errorText.alpha = 0
+	errorText:setFillColor( 1,0,0 )
 --Functions for capturing the text from the text boxes--
 
 	local function gameTypeTextListener( event )
@@ -128,24 +139,24 @@ function scene:create( event )
 	capNum:addEventListener( "userInput", capNumTextListener )
 
 -------------------------------------------
--- Configure textBox for time-to-start
+-- Configure textBox for length of game
 -------------------------------------------
 	--labels = {  "No time Limit", "5:00", "10:00", "15:00", "20:00", "30:00", "45:00", "1:00:00", "1:15:00", "1:30:00", "1:45:00", "2:00:00"}
 
 	gameLength = native.newTextField( xCenter + 270,450, xCenter, 100)
 		gameLength.inputType = "number"
 		gameLength.size = "10"
-		gameLength.placeholder = "(military time, HHMM)"
+		gameLength.placeholder = "(integer, minutes)"
 	gameLength:addEventListener( "userInput", gameLengthTextListener )
 
 -------------------------------------------
--- Configure textBox for length of game
+-- Configure textBox for time-to-start
 -------------------------------------------
 	--labels = { "On Creation","1:00","5:00","8:00","10:00","20:00","30:00","45:00" }
 	TTS = native.newTextField( xCenter + 270,550, xCenter, 100)
 		TTS.inputType = "number"
 		TTS.size = "10"
-		TTS.placeholder = "(integer, minutes)"
+		TTS.placeholder = "(military time, HHMM)"
 	TTS:addEventListener( "userInput", TTSTextListener )
 
 -------------------------------------------
@@ -153,6 +164,7 @@ function scene:create( event )
 -------------------------------------------
 
 	local function toGame( event )
+		if (not gameTypeText == "") then
 --here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
 			local data = { gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText }
 			coronium:createObject( "testGameData", data, function(e) --actually uploading to the server with the data data table
@@ -161,14 +173,16 @@ function scene:create( event )
 					end
 				end)
 			composer.gotoScene("inGame", {effect = "fade", time = 3000,})
+		else errorText.alpha = 1
+		end
 	end
 
 	local SAG = widget.newButton
 	{
 		id = SAG,
-	    label = "Save & Go!",
+	    label = "Start",
 	    font = nil,
-	    fontSize = font2,
+	    fontSize = font4,
 	    emboss = true,
 	    shape="roundedRect",
 	    width = display.contentWidth/2,
@@ -202,6 +216,7 @@ function scene:create( event )
     localGroup:insert(TTS)
     localGroup:insert(SAG)
     localGroup:insert(back)
+    localGroup:insert(errorText)
 end
 
 

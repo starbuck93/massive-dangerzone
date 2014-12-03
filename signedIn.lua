@@ -19,6 +19,11 @@ end
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
+--retrieve the above variables and set them if they exist
+--here is where we can grab any current games that are going on
+--coronium:getObject( "testGameData", "ObjectID", function(e)
+--		print(e.result.objectId)
+--	end)
 
 	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,font2)
 	local welcomeText2 = display.newText("Please select a game to join:",xCenter,yCenter-350,nil,font2)

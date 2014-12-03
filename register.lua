@@ -22,13 +22,9 @@ local localGroup = display.newGroup()
 	passwordBox.size = "10"
 	passwordBox.text = "Password"
 	passwordBox.isSecure = true
-	passwordBox2 = native.newTextField( xCenter/2+xCenter/4, yCenter/4+450, xCenter/2, 100)
-	passwordBox2.inputType = "default"
-	passwordBox2.size = "10"
-	passwordBox2.text = "Confirm Password"
-	passwordBox2.isSecure = true
 
 local function moveScenes()
+   	native.setKeyboardFocus( nil )
 	composer.gotoScene("signedIn")
 end
 
@@ -48,7 +44,6 @@ function scene:create( event )
     location = composer.getSceneName( "previous" )
 
 	local password = ""
-	local password2 = ""
 
 	local function onLoginEvent( event )
 		if not event.error then
@@ -64,26 +59,24 @@ function scene:create( event )
 	end
 
 	local function registerNewUser()
+    	native.setKeyboardFocus( nil )
 		coronium:registerUser({ 
 		email = email,
 		password = password,
 		username = username
 		}, onRegisterEvent)
-		coronium:addEvent( "registerUEvent", "register" .. email )
-		sentEmail = native.showAlert("Thank you for registering!", "You will recieve an email shortly. Along with some roses and a box of chocolates.", {"Ok, Thanks!"})
+		coronium:addEvent( "registerUEvent", "register " .. email )
 	end
 
 
 	local options = {text ="Please enter the information required. Good luck out there!", x = display.contentCenterX, y = 200, font = native.systemFont, fontSize = font2,width = display.actualContentWidth,align = "center"}
 	local instruct = display.newText(options)
-	local text4 = display.newText("Email:",5,yCenter/4+150,nil,font1)
+	local text4 = display.newText("Email:",10,yCenter/4+150,nil,font1)
 	text4.anchorX = 0
-	local text1 = display.newText("Username:",5,yCenter/4+250,nil,font1)
+	local text1 = display.newText("Username:",10,yCenter/4+250,nil,font1)
 	text1.anchorX = 0
-	local text2 = display.newText("Password:",5,yCenter/4+350,nil,font1)
+	local text2 = display.newText("Password:",10,yCenter/4+350,nil,font1)
 	text2.anchorX = 0
-	local text3 = display.newText({text="Confirm Password:",5,y=yCenter/4+450,font=nil,fontSize=font1,width = xCenter/2-50})
-	text3.anchorX = 0
 
 	local submit = widget.newButton
 	{
@@ -111,20 +104,17 @@ function scene:create( event )
 	localGroup:insert(text4)
 	localGroup:insert(text1)
 	localGroup:insert(text2)
-	localGroup:insert(text3)
 	localGroup:insert(submit)
 	localGroup:insert(back)
 	localGroup:insert(usernameBox)
 	localGroup:insert(emailBox)
 	localGroup:insert(passwordBox)
-	localGroup:insert(passwordBox2)
 
 
 	local function emailListener( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
 	    	email = event.target.text
-	       	native.setKeyboardFocus( usernameBox )
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end
@@ -133,7 +123,6 @@ function scene:create( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
 	    	username = event.target.text
-	       	native.setKeyboardFocus( passwordBox )
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end
@@ -142,7 +131,6 @@ function scene:create( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
 	    	password = event.target.text
-	       	native.setKeyboardFocus( passwordBox2 )
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end
@@ -159,7 +147,6 @@ function scene:create( event )
 	emailBox:addEventListener( "userInput", emailListener )
 	usernameBox:addEventListener( "userInput", userListener )
 	passwordBox:addEventListener( "userInput", passwordListener )
-	passwordBox2:addEventListener( "userInput", password2Listener )
 end
 
 

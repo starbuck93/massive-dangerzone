@@ -28,7 +28,7 @@ function scene:create( event )
 	x = display.contentCenterX, 
 	y = 300, 
 	font = native.systemFont, 
-	fontSize = font1,
+	fontSize = font2,
 	width = display.actualContentWidth-60,
 	align = "center"}
 

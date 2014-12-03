@@ -27,13 +27,13 @@ function scene:create( event )
 
     nerfImage.alpha = 0 --a global value
     local yAxis =     display.newLine( xCenter, 100, xCenter, 700 )
-    local xAxis_00 = display.newLine( 0, 100, 800, 100 )
-    local xAxis_01 = display.newLine( 0, 200, 800, 200 )
-    local xAxis_02 = display.newLine( 0, 300, 800, 300 )
-    local xAxis_03 = display.newLine( 0, 400, 800, 400 )
-    local xAxis_04 = display.newLine( 0, 500, 800, 500 )
-    local xAxis_05 = display.newLine( 0, 600, 800, 600 )
-    local xAxis_06 = display.newLine( 0, 700, 800, 700 )
+    local xAxis_00 = display.newLine( 0, 100, display.contentWidth, 100 )
+    local xAxis_01 = display.newLine( 0, 200, display.contentWidth, 200 )
+    local xAxis_02 = display.newLine( 0, 300, display.contentWidth, 300 )
+    local xAxis_03 = display.newLine( 0, 400, display.contentWidth, 400 )
+    local xAxis_04 = display.newLine( 0, 500, display.contentWidth, 500 )
+    local xAxis_05 = display.newLine( 0, 600, display.contentWidth, 600 )
+    local xAxis_06 = display.newLine( 0, 700, display.contentWidth, 700 )
 
     yAxis.strokeWidth    = 3
     xAxis_00.strokeWidth = 3
@@ -44,23 +44,32 @@ function scene:create( event )
     xAxis_05.strokeWidth = 3
     xAxis_06.strokeWidth = 3
 
-    local GameName   = display.newText( "Game Details:", 5, 150, nil, font1 )
+    local GameName   = display.newText( "Game Details:", 10, 150, nil, font1 )
     GameName.anchorX = 0
-    local numPlayers = display.newText( "# of joined players:", 5, 250, nil, font1 )
+    local numPlayers = display.newText( "# of joined players:", 10, 250, nil, font1 )
     numPlayers.anchorX = 0
-    local numTeams   = display.newText( "# of teams in game:", 5, 350, nil, font1 )
+    local numTeams   = display.newText( "# of teams in game:", 10, 350, nil, font1 )
     numTeams.anchorX = 0
-    local numCapt    = display.newText( "# of captains per team:", 5, 450, nil, font1 )
+    local numCapt    = display.newText( "# of captains per team:", 10, 450, nil, font1 )
     numCapt.anchorX = 0
-    local timeLimit  = display.newText( "Time Limit:",5, 550, nil, font1 )
+    local timeLimit  = display.newText( "Time Limit:",10, 550, nil, font1 )
     timeLimit.anchorX = 0
-    local timeBegin  = display.newText( "Game begins in:", 5, 650, nil, font1 )
+    local timeBegin  = display.newText( "Game begins in:", 10, 650, nil, font1 )
     timeBegin.anchorX = 0
 
-
-    local function leavePage ()
-        composer.gotoScene("adminOptions")
-    end
+    --variables inserted here
+    local GameName2   = display.newText( gameTypeText, display.contentWidth-10, 150, nil, font1 )
+    GameName2.anchorX = 1
+    local numPlayers2 = display.newText( "0", display.contentWidth-10, 250, nil, font1 )
+    numPlayers2.anchorX = 1
+    local numTeams2   = display.newText( teamNumText, display.contentWidth-10, 350, nil, font1 )
+    numTeams2.anchorX = 1
+    local numCapt2    = display.newText( capNumText, display.contentWidth-10, 450, nil, font1 )
+    numCapt2.anchorX = 1
+    local timeLimit2  = display.newText( gameLengthText, display.contentWidth-10, 550, nil, font1 )
+    timeLimit2.anchorX = 1
+    local timeBegin2  = display.newText( TTSText, display.contentWidth-10, 650, nil, font1 )
+    timeBegin2.anchorX = 1
 
 
     -- Handler that gets notified when the alert closes
@@ -116,7 +125,13 @@ function scene:create( event )
     localGroup:insert(numTeams)
     localGroup:insert(numCapt)
     localGroup:insert(timeLimit)
-    localGroup:insert(timeBegin) 
+    localGroup:insert(timeBegin)
+    localGroup:insert(GameName2)
+    localGroup:insert(numPlayers2)
+    localGroup:insert(numTeams2)
+    localGroup:insert(numCapt2)
+    localGroup:insert(timeLimit2)
+    localGroup:insert(timeBegin2) 
     localGroup:insert(back)
     localGroup:insert(killGame)    
 

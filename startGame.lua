@@ -20,12 +20,7 @@ function scene:create( event )
     location = composer.getSceneName( "previous" )
 
 
---a few global variables to store the input text in
-gameTypeText = ""
-teamNumText = ""
-capNumText = ""
-gameLengthText = ""
-TTSText = ""
+
 
 -------------------------------------------
 -- Configure display
@@ -156,20 +151,16 @@ TTSText = ""
 -------------------------------------------
 -- Configure save&go button
 -------------------------------------------
-local errorText = display.newText{
-	text = "Required field: Game Name", 
-	x = xCenter, 
-	y = yCenter+100, 
-	font = native.systemFont, 
-	fontSize = 50,
-	width = display.actualContentWidth-60,
-	align = "center"}
-	errorText:setFillColor( 1,0,0 )
 
 	local function toGame( event )
-		-- if gameTypeText ~= "" then
+--here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
+			local data = { gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText }
+			coronium:createObject( "testGameData", data, function(e) --actually uploading to the server with the data data table
+					if not e.error then
+						objId = e.result.objectId 
+					end
+				end)
 			composer.gotoScene("inGame", {effect = "fade", time = 3000,})
-		-- else errorText.text = "Required field: Game Name"
 	end
 
 	local SAG = widget.newButton
@@ -190,7 +181,6 @@ local errorText = display.newText{
 	    onEvent = toGame
 	}
 
-	localGroup:insert(errorText)
 	localGroup:insert(yAxis)
     localGroup:insert(xAxis_00)
     localGroup:insert(xAxis_01)

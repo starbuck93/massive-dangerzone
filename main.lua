@@ -32,6 +32,23 @@ font3 = 60
 font4 = 70
 font5 = 80
 
+--a few global variables to store the input text in
+gameTypeText = "default variable"
+teamNumText = "2"
+capNumText = "1"
+gameLengthText = "60"
+TTSText = "10"
+
+--very important... object ID
+objId = ""
+
+--retrieve the above variables and set them if they exist
+--coronium:getObject( "testGameData", "ObjectID", function(e)
+--		print(e.result.objectId)
+--	end)
+
+
+--dynamic fonts. you're welcome.
 if display.contentWidth < 720 and display.contentHeight < 1080 then
 	font1 = font1-(font1*0.1)
 	font2 = font2-(font2*0.1) 
@@ -52,7 +69,6 @@ help = widget.newButton --another global value that we can edit the alpha of
     label = "?",
     fontSize = 60,
     onRelease = helpFunction,
-    --properties for a rounded rectangle button...
     shape="circle",
     height = 1,
 	labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },

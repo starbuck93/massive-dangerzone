@@ -17,32 +17,22 @@ function scene:create( event )
     }
 
 
-	local preTeam = display.newText{
-	text ="You are on the.", 
-	x = xCenter, 
-	y = yCenter/3, 
-	font = native.systemFont, 
-	fontSize = font2,
-	width = display.actualContentWidth-60,
-	align = "center"}
-
-	local teamSelection = display.newText{
-	text ="red/blue", 
+	local gameVars = display.newText{
+	text = gameTypeText .. " with " .. teamNumText .. " teams and game length " .. gameLengthText .. " minutes.", 
 	x = xCenter, 
 	y = yCenter/2, 
 	font = native.systemFont, 
-	fontSize = font3,
-	width = display.actualContentWidth-60,
-	align = "center"}
-
-	local team = display.newText{
-	text ="team.", 
-	x = xCenter, 
-	y = yCenter/1.5, 
-	font = native.systemFont, 
 	fontSize = font2,
 	width = display.actualContentWidth-60,
 	align = "center"}
+--edit the text if the teams are different sizes.	
+	if (teamNumText == "1") then
+		gameVars.text = gameTypeText .. " with " .. teamNumText .. " team and game length " .. gameLengthText .. " minutes." 
+	end
+	if (teamNumText == "0") then
+		gameVars.text = gameTypeText .. " with no teams and game length " .. gameLengthText .. " minutes." 
+	end
+
 
 	local gameBegins = display.newText{	
 	text ="Game begins in:", 
@@ -123,9 +113,7 @@ function scene:create( event )
 
 	timer.performWithDelay(1000,decreaseTime2,time_02)
 
-	localGroup:insert(preTeam)
-	localGroup:insert(teamSelection)
-	localGroup:insert(team)
+	localGroup:insert(gameVars)
 	localGroup:insert(gameBegins)
 	localGroup:insert(TTSbackground)
 	localGroup:insert(GTbackground)

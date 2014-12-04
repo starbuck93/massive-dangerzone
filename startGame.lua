@@ -64,7 +64,8 @@ function scene:create( event )
 	align = "center",
 	}
 	errorText.alpha = 0
-	errorText:setFillColor( 1,0,0 )
+	errorText:setFillColor( .8,80/255,80/255 )
+	
 --Functions for capturing the text from the text boxes--
 
 	local function gameTypeTextListener( event )

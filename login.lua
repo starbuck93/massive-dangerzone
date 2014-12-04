@@ -95,7 +95,7 @@ function scene:create( event )
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
 	    -- onRelease= loginEventAdmin
-	    onRelease = composer.gotoScene("adminOptions", {effect = "fade", time = 3000,})
+	    onRelease = moveScenesAdmin
 	}
 
 	-- Center the buttons
@@ -140,15 +140,7 @@ end
 function scene:show(event)
 	localGroup.alpha = 1
 	composer.removeHidden( true )
-	-- emailBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
-	-- emailBox.inputType = "default"
-	-- emailBox.size = "10"
-	-- emailBox.text = "Email"
-	-- passwordBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+350, xCenter/2, 100)
-	-- passwordBox.inputType = "default"
-	-- passwordBox.size = "10"
-	-- passwordBox.text = "Password"
-	-- passwordBox.isSecure = true
+	nerfImage.alpha = .2
 end
 
 function scene:hide(event)

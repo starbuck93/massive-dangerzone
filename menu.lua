@@ -10,10 +10,9 @@ function scene:create( event )
 
 	help.alpha = 1
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
-	
+
 	local message = display.newText("NERF CLUB",xCenter/2,yCenter/2-200,nil,60)
 	message:setFillColor(232/255, 100/255, 37/255)
-	
 
 
 	local function loginFunction( event )
@@ -21,18 +20,18 @@ function scene:create( event )
 	end
 
 	local login = widget.newButton{
-	id = "loginButton",
-	width = display.contentWidth/2,
-	height = 100,
-	emboss = true,
-	fontSize = font4,
-	top = yCenter/2-100,
-	label = "Login",
-	shape="roundedRect",
-	cornerRadius = 45,
-	labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-	fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	onRelease = loginFunction
+		id = "loginButton",
+		width = display.contentWidth/2,
+		height = 100,
+		emboss = true,
+		fontSize = font4,
+		top = yCenter/2-100,
+		label = "Login",
+		shape="roundedRect",
+		cornerRadius = 45,
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+		onRelease = loginFunction
 	}
 	login.x = xCenter/2
 
@@ -42,18 +41,18 @@ function scene:create( event )
 	end
 
 	local register = widget.newButton{
-	id = "registerButton",
-	width = display.contentWidth/2,
-	height = 100,
-	emboss = true,
-	fontSize = font4,
-	top = yCenter/2+100,
-	label = "Register",
-	shape="roundedRect",
-	cornerRadius = 45,
-	labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-	fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
-	onRelease = registerFunction
+		id = "registerButton",
+		width = display.contentWidth/2,
+		height = 100,
+		emboss = true,
+		fontSize = font4,
+		top = yCenter/2+100,
+		label = "Register",
+		shape="roundedRect",
+		cornerRadius = 45,
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+		onRelease = registerFunction
 	}
 	register.x = xCenter/2
 

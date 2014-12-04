@@ -16,7 +16,6 @@ function scene:create( event )
    		fontSize = font2,
    		onRelease = function() composer.gotoScene("menu"); end,
     }
-    location = composer.getSceneName( "previous" )
 
     local sceneGroup = self.view
 
@@ -43,7 +42,7 @@ function scene:create( event )
 	end
 	local function moveScenes_03()
 		--instead of moving to a scene here, maybe we'll want to load another scene with some data or something
-		composer.gotoScene("inGame", {effect = "fade", time = 3000,})
+		composer.gotoScene("inGameAdmin", {effect = "fade", time = 3000,})
 	end
 
 

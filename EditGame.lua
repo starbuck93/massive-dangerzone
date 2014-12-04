@@ -36,7 +36,7 @@ function scene:create( event )
 	local welcomeText2 = display.newText("Please select a game to edit:",xCenter,yCenter-350,nil,font2)
 	local game1 = widget.newButton
 	{
-	    label = "Team Deathmatch",
+	    label = gameTypeText,
 	    labelColor = {default ={1,1,1,1}, over={1,0,0,1} },
 	    font = nil,
 	    fontSize = font2,

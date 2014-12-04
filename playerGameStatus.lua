@@ -15,6 +15,7 @@ function scene:create( event )
 
     local options ={text="I'm Ready!", x=display.contentCenterX, y = display.contentCenterY+550, font=native.systemFont, fontSize=font1, width= display.actualContentWidth, align="center"}
     local imReady = display.newText(options)
+
     imReady.alpha=0
 
 
@@ -31,14 +32,14 @@ function scene:create( event )
     location = composer.getSceneName( "previous" )
 
     nerfImage.alpha = 0 --a global value
-    local yAxis =     display.newLine( 450, 100, 450, 700 )
-    local xAxis_00 = display.newLine( 0, 100, 800, 100 )
-    local xAxis_01 = display.newLine( 0, 200, 800, 200 )
-    local xAxis_02 = display.newLine( 0, 300, 800, 300 )
-    local xAxis_03 = display.newLine( 0, 400, 800, 400 )
-    local xAxis_04 = display.newLine( 0, 500, 800, 500 )
-    local xAxis_05 = display.newLine( 0, 600, 800, 600 )
-    local xAxis_06 = display.newLine( 0, 700, 800, 700 )
+    local yAxis =     display.newLine( xCenter, 100, xCenter, 700 )
+    local xAxis_00 = display.newLine( 0, 100, display.actualContentWidth, 100 )
+    local xAxis_01 = display.newLine( 0, 200, display.actualContentWidth, 200 )
+    local xAxis_02 = display.newLine( 0, 300, display.actualContentWidth, 300 )
+    local xAxis_03 = display.newLine( 0, 400, display.actualContentWidth, 400 )
+    local xAxis_04 = display.newLine( 0, 500, display.actualContentWidth, 500 )
+    local xAxis_05 = display.newLine( 0, 600, display.actualContentWidth, 600 )
+    local xAxis_06 = display.newLine( 0, 700, display.actualContentWidth, 700 )
 
     yAxis.strokeWidth    = 3
     xAxis_00.strokeWidth = 3
@@ -69,6 +70,9 @@ function scene:create( event )
     local ready = display.newText( "Ready Up!", xCenter, yCenter + 300, nil, font3 )
     readyRect:toBack()
 
+    local function enterGame( event )
+    	composer.gotoScene("inGame")
+    end
 
 
     -- Handle press events for the checkbox
@@ -81,7 +85,7 @@ function scene:create( event )
             -- readyRect:toBack() --dont need this
             imReady.alpha = 1
             imReady:setFillColor( 1,1,1 )
-            imReady.text="I'm Ready!"
+            timer.performWithDelay( 2000, enterGame )
         else
         	readyRect:setFillColor( 139/255,0,0 )
             imReady:setFillColor( black )

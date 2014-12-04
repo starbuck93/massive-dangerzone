@@ -10,10 +10,7 @@ local scene = composer.newScene()
 local localGroup = display.newGroup()
 
 local function moveScenes( event )
-	--if event.phase == "ended" then
-		--print("Ended")
 	composer.gotoScene("playerGameStatus", {effect = "fade", time = 1000})
-	--end
 end
 
 --Called if the scene hasn't been previously seen
@@ -27,12 +24,31 @@ function scene:create( event )
 			end
 	end)
 
+	local function logoutEvent( event )
+		--coronium:logoutUser()
+		composer.gotoScene("menu", {effect = "fade", time = 1000})
+	end
+
+	local logout = widget.newButton
+	{
+	    label = "Logout",
+	    font = nil,
+	    fontSize = font1,
+	    emboss = true,
+	    height = 100,
+	    cornerRadius = 50,
+		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+	    onRelease = logoutEvent
+	}
+	logout.x = display.contentWidth-75
+	logout.y = 50
+
+
 	local welcomeText = display.newText("Welcome, " .. username,xCenter,yCenter-400,nil,font2)
 	local welcomeText2 = display.newText("Please select a game to join:",xCenter,yCenter-350,nil,font2)
 	local game1 = widget.newButton
 	{
 	    label = gameTypeText,
-	    labelColor = {default ={1,1,1,1}, over={1,0,0,1} },
 	    font = nil,
 	    fontSize = font2,
 	    emboss = true,
@@ -47,42 +63,13 @@ function scene:create( event )
 	game1.x = xCenter
 	game1.y = yCenter
 
+	if (gameTypeText == "default variable") then
+		game1:setLabel("No current games")
+		--game1:setEnabled(false)
+	end
+
 	
-	-- local tabButtons = {
-	--     {
-	--         label = "Main Menu",
-	--         size = 36,
-	--         id = "tab1",
-	--         selected = true,
-	--         labelYOffset = -25,
-	--         onPress = function() composer.gotoScene( "menu" ); end,
-	--     },
-	--     {
-	--         label = "Login",
-	--         size = 36,
-	--         id = "tab2",
-	--         labelYOffset = -25,
-	--         onPress = function() composer.gotoScene( "login" ); end,
-	--     },
-	--     {
-	--         label = "Register",
-	--         size = 36,
-	--         id = "tab3",
-	--         labelYOffset = -25,
-	--         onPress = function() composer.gotoScene( "register" ); end,
-	--     },
-	-- }
-
-
-	-- Create the widget
-	-- local tabBar = widget.newTabBar
-	-- {
-	--     top = yCenter-100,
-	--     width = xCenter,
-	--     height = 100,
-	--     buttons = tabButtons
-	-- }	
-
+	localGroup:insert(logout)
 	localGroup:insert(welcomeText)
 	localGroup:insert(welcomeText2)
 	localGroup:insert(game1)
@@ -92,6 +79,8 @@ end
 function scene:show(event)
 	localGroup.alpha = 1
 	composer.removeHidden( true )
+	nerfImage.alpha = .2
+
 end
 
 function scene:hide(event)

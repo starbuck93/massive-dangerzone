@@ -5,18 +5,16 @@ local scene = composer.newScene()
 
 
 function scene:create( event )
-
-	nerfImage.alpha = .2
-
-	local back = widget.newButton{
-		 width = 200,
-	 	height = 75,
-    	left = 0,
-    	top = 0,
-    	id = "back",
-   		label = "<-- back",
-   		fontSize = font2,
-   		onRelease = function() composer.gotoScene("signedIn"); end,
+	local goToOptions = widget.newButton{
+	height = 75,
+	width = 300,
+    left = 0,
+    top = 0,
+    id = "options",
+    label = "Admin Options",
+    fontSize = font2,
+    textOnly = true,
+    onRelease = function() composer.gotoScene("adminOptions"); end,
     }
 
 
@@ -125,7 +123,7 @@ function scene:create( event )
 	localGroup:insert(ti_02)
 	--localGroup:insert()
 	--localGroup:insert()
-	localGroup:insert(back)
+	localGroup:insert(goToOptions)
 	localGroup:insert(GTtext)
 
 

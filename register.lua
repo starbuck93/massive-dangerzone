@@ -84,7 +84,7 @@ function scene:create( event )
 	    font = nil,
 	    fontSize = font2,
 	    emboss = true,
-	    shape="roundedRect",
+	    shape = "roundedRect",
 	    width = display.contentWidth/2,
 	    height = 100,
 	    cornerRadius = 50,
@@ -95,7 +95,7 @@ function scene:create( event )
 
 	-- Center the button
 	submit.x = display.contentCenterX
-	submit.y = yCenter-175	
+	submit.y = yCenter/2+(3*(yCenter/2))/5	
 
 	localGroup:insert(instruct)
 	-- localGroup:insert(instruct2)
@@ -153,35 +153,13 @@ end
 function scene:show(event)
 	localGroup.alpha = 1
 	composer.removeHidden( true )
-	-- emailBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+150, xCenter/2, 100)
-	-- emailBox.inputType = "email"
-	-- emailBox.size = "10"
-	-- emailBox.text = "Email"
-	-- usernameBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
-	-- usernameBox.inputType = "default"
-	-- usernameBox.size = "10"
-	-- usernameBox.text = "Username"
-	-- passwordBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+350, xCenter/2, 100)
-	-- passwordBox.inputType = "default"
-	-- passwordBox.size = "10"
-	-- passwordBox.text = "Password"
-	-- passwordBox.isSecure = true
-	-- passwordBox2 = native.newTextField( xCenter/2+xCenter/4, yCenter/4+450, xCenter/2, 100)
-	-- passwordBox2.inputType = "default"
-	-- passwordBox2.size = "10"
-	-- passwordBox2.text = "Confirm Password"
-	-- passwordBox2.isSecure = true
-
+	nerfImage.alpha = .2
 end
 
 function scene:hide(event)
 	localGroup.alpha = 0
 	localGroup:removeSelf( )
 	composer.removeScene("register")
-	-- emailBox:removeSelf( )
-	-- usernameBox:removeSelf( )
-	-- passwordBox:removeSelf( )
-	-- passwordBox2:removeSelf( )
 end
 
 

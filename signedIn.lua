@@ -16,12 +16,21 @@ end
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
+	local function setUsername( event )
+		if not event.error then
+			username = event.result.username
+		end
+	end
+			
+	coronium:getMe(setUsername)
+
+
 	--retrieve the above variables and set them if they exist
 	--here is where we can grab any current games that are going on
 	coronium:getObject( "testGameData", objId, function(e)
 		if not e.error then
 				gameTypeText = tostring(e.result.gameType)
-				teamNumText = tostring(e.result.teamNumText)
+				teamNumText = tostring(e.result.numberTeams)
 				capNumText = tostring(e.result.numberCapts)
 				gameLengthText = tostring(e.result.gameLength)
 				TTSText = tostring(e.result.timeToStart)

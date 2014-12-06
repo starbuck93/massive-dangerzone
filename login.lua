@@ -31,13 +31,14 @@ function scene:create( event )
     }
 
 	local function setUsername( event )
+		if not event.error then
 			username = event.result.username
 		end
+	end
 
 	local function onLoginEvent( event )
 		if not event.error then
 			coronium:addEvent( "LoginEvent", "login " .. email )
-			coronium:getMe(setUsername)
 			composer.gotoScene("signedIn", {effect = "fade", time = 3000,})
 		end
 	end
@@ -48,7 +49,6 @@ function scene:create( event )
 	local function onLoginEventAdmin( event )
 		if not event.error then
 			coronium:addEvent( "LoginEvent", "login " .. email )
-			coronium:getMe(setUsername)
 			composer.gotoScene("adminOptions", {effect = "fade", time = 3000,})
 		end
 	end

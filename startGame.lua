@@ -175,7 +175,7 @@ function scene:create( event )
 					end
 				end)
 			composer.gotoScene("inGame", {effect = "fade", time = 3000,})
-		else errorText.alpha = 1
+		else then errorText.alpha = 1
 		end
 	end
 

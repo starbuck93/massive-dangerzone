@@ -10,11 +10,12 @@ function scene:create( event )
 	local back = widget.newButton{
 	 	width = 200,
 	 	height = 75,        
-        left = 0,
-        top = 0,
+        left = 5,
+        top = 5,
         id = "back",
         label = "<-- back",
         fontSize = font2,
+        labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
         onRelease = function() composer.gotoScene("adminOptions"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -59,7 +60,7 @@ function scene:create( event )
 	x = xCenter, 
 	y = yCenter+yCenter/4, 
 	font = native.systemFont, 
-	fontSize = font1,
+	fontSize = font2,
 	width = display.actualContentWidth-60,
 	align = "center",
 	}

@@ -7,13 +7,13 @@ local scene = composer.newScene()
 function scene:create( event )
 	local goToOptions = widget.newButton{
 	height = 75,
-	width = 300,
-    left = 0,
-    top = 0,
+	width = 350,
+    left = 5,
+    top = 5,
     id = "options",
     label = "Admin Options",
     fontSize = font2,
-    textOnly = true,
+    labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
     onRelease = function() composer.gotoScene("adminOptions"); end,
     }
 

@@ -9,11 +9,12 @@ function scene:create( event )
 	local back = widget.newButton{
 		 width = 200,
 	 	height = 75,
-    	left = 0,
-    	top = 0,
+    	left = 5,
+    	top = 5,
     	id = "back",
    		label = "<-- back",
    		fontSize = font2,
+   		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
    		onRelease = function() composer.gotoScene("menu"); end,
     }
 

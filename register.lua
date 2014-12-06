@@ -34,11 +34,12 @@ function scene:create( event )
     local back = widget.newButton{
         width = 200,
 	 	height = 75,
-        left = 0,
-        top = 0,
+        left = 5,
+        top = 5,
         id = "back",
         label = "<-- back",
         fontSize = font2,
+        labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
         onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -69,13 +70,13 @@ function scene:create( event )
 	end
 
 
-	local options = {text ="Please enter the information required. Good luck out there!", x = display.contentCenterX, y = 200, font = native.systemFont, fontSize = font2,width = display.actualContentWidth,align = "center"}
+	local options = {text ="Please enter the information required. Good luck out there!", x = display.contentCenterX, y = 200, font = native.systemFont, fontSize = font3, width = display.actualContentWidth-50,align = "center"}
 	local instruct = display.newText(options)
-	local text4 = display.newText("Email:",10,yCenter/4+150,nil,font1)
+	local text4 = display.newText("Email:",20,yCenter/4+150,nil,font2)
 	text4.anchorX = 0
-	local text1 = display.newText("Username:",10,yCenter/4+250,nil,font1)
+	local text1 = display.newText("Username:",20,yCenter/4+250,nil,font2)
 	text1.anchorX = 0
-	local text2 = display.newText("Password:",10,yCenter/4+350,nil,font1)
+	local text2 = display.newText("Password:",20,yCenter/4+350,nil,font2)
 	text2.anchorX = 0
 
 	local submit = widget.newButton

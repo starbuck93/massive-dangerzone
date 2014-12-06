@@ -21,11 +21,12 @@ function scene:create( event )
     local back = widget.newButton{
         width = 200,
 	 	height = 75,
-        left = 0,
-        top = 0,
+        left = 5,
+        top = 5,
         id = "back",
         label = "<-- back",
         fontSize = font2,
+        labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
         onRelease = function() composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
@@ -54,8 +55,10 @@ function scene:create( event )
 	end
 
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
-	local text1 = display.newText("Email:",xCenter/2-200,yCenter/4+250,nil,48)
-	local text2 = display.newText("Password:",xCenter/2-200,yCenter/4+350,nil,48)
+	local text1 = display.newText("Email:",20,yCenter/4+250,nil,font2)
+	text1.anchorX = 0
+	local text2 = display.newText("Password:",20,yCenter/4+350,nil,font2)
+	text2.anchorX = 0
 	emailBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+250, xCenter/2, 100)
 	emailBox.inputType = "default"
 	emailBox.size = "10"

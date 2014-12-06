@@ -86,7 +86,8 @@ help.alpha = 0
 nerfImage = display.newImage( "pics/NERF_transparent.png") -- I changed the alpha to go to only .2 instead of 0 so it stays there all the time. you can edit the alpha using "nerfImage.alpha" at any point because it is a global value now
 
 nerfImage.x = display.contentCenterX
-nerfImage.y = 200
+nerfImage.y = display.contentCenterY
+
 
 local function fadeout() 
 	local options =
@@ -96,5 +97,5 @@ local function fadeout()
 }
 	composer.gotoScene("menu", options)
 end
-	timer.performWithDelay( 3000, transition.to( nerfImage, {time = 1000, alpha = .2}) )
+	timer.performWithDelay( 3000, transition.to( nerfImage, {time = 1000, alpha = .2, y = 200}) )
 	timer.performWithDelay( 1000, fadeout)

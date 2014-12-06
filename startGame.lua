@@ -166,8 +166,8 @@ function scene:create( event )
 -------------------------------------------
 
 	local function toGame( event )
-		if (not gameTypeText == "") then
---here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
+		if not ( gameTypeText == "default variable") then
+	--here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
 			local data = { gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText }
 			coronium:createObject( "testGameData", data, function(e) --actually uploading to the server with the data data table
 					if not e.error then
@@ -175,7 +175,7 @@ function scene:create( event )
 					end
 				end)
 			composer.gotoScene("inGame", {effect = "fade", time = 3000,})
-		else then errorText.alpha = 1
+		else errorText.alpha = 1
 		end
 	end
 

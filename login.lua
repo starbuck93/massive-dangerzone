@@ -29,11 +29,15 @@ function scene:create( event )
         labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
         onRelease = function() composer.gotoScene("menu"); end,
     }
-    location = composer.getSceneName( "previous" )
+
+	local function setUsername( event )
+			username = event.result.username
+		end
 
 	local function onLoginEvent( event )
 		if not event.error then
 			coronium:addEvent( "LoginEvent", "login " .. email )
+			coronium:getMe(setUsername)
 			composer.gotoScene("signedIn", {effect = "fade", time = 3000,})
 		end
 	end
@@ -44,7 +48,7 @@ function scene:create( event )
 	local function onLoginEventAdmin( event )
 		if not event.error then
 			coronium:addEvent( "LoginEvent", "login " .. email )
-			username = coronium:getUser(email)
+			coronium:getMe(setUsername)
 			composer.gotoScene("adminOptions", {effect = "fade", time = 3000,})
 		end
 	end

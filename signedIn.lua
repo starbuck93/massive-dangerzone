@@ -25,7 +25,7 @@ function scene:create( event )
 	end)
 
 	local function logoutEvent( event )
-		--coronium:logoutUser()
+		coronium:logoutUser()
 		composer.gotoScene("menu", {effect = "fade", time = 1000})
 	end
 

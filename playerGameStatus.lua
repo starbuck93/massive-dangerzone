@@ -60,14 +60,27 @@ function scene:create( event )
     numCapt.anchorX = 0
     local timeLimit  = display.newText( "Time Limit:", 10, 550, nil, font1 )
     timeLimit.anchorX = 0
-    local timeBegin  = display.newText( "Game begins in:", 10, 650, nil, font1 )
+    local timeBegin  = display.newText( "Game begins at:", 10, 650, nil, font1 )
     timeBegin.anchorX = 0
+
+    local GameName2   = display.newText( gameTypeText, display.actualContentWidth-10, 150, nil, font1 )
+    GameName2.anchorX = 1
+    local numPlayers2 = display.newText( "", display.actualContentWidth-10, 250, nil, font1 )
+    numPlayers2.anchorX = 1
+    local numTeams2   = display.newText( teamNumText, display.actualContentWidth-10, 350, nil, font1 )
+    numTeams2.anchorX = 1
+    local numCapt2    = display.newText( capNumText, display.actualContentWidth-10, 450, nil, font1 )
+    numCapt2.anchorX = 1
+    local timeLimit2  = display.newText( gameLengthText, display.actualContentWidth-10, 550, nil, font1 )
+    timeLimit2.anchorX = 1
+    local timeBegin2  = display.newText( TTSText, display.actualContentWidth-10, 650, nil, font1 )
+    timeBegin2.anchorX = 1
 
 
     --ready up
     readyRect = display.newRect( xCenter, yCenter, display.actualContentWidth , display.actualContentHeight )
     readyRect:setFillColor( 153/255,0,0 )
-    local ready = display.newText( "Ready Up!", xCenter, yCenter + 300, nil, font3 )
+    local ready = display.newText( "Ready Up!", xCenter, yCenter + 300, nil, font4 )
     readyRect:toBack()
 
     local function enterGame( event )
@@ -121,6 +134,12 @@ function scene:create( event )
     localGroup:insert(numCapt)
     localGroup:insert(timeLimit)
     localGroup:insert(timeBegin)
+    localGroup:insert(GameName2)
+    localGroup:insert(numPlayers2)
+    localGroup:insert(numTeams2)
+    localGroup:insert(numCapt2)
+    localGroup:insert(timeLimit2)
+    localGroup:insert(timeBegin2)
     localGroup:insert(ready)
     localGroup:insert(imReady)
     localGroup:insert(readyUP)    

@@ -55,7 +55,7 @@ function scene:create( event )
     numCapt.anchorX = 0
     local timeLimit  = display.newText( "Time Limit:",10, 450, nil, font1 )
     timeLimit.anchorX = 0
-    local timeBegin  = display.newText( "Game begins in:", 10, 550, nil, font1 )
+    local timeBegin  = display.newText( "Game begins at:", 10, 550, nil, font1 )
     timeBegin.anchorX = 0
 
     --variables inserted here

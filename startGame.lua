@@ -52,7 +52,7 @@ function scene:create( event )
     numCapt.anchorX = 0
     local timeLimit  = display.newText( "Time Limit:", 10, 450, nil, font1 )
     timeLimit.anchorX = 0
-    local timeBegin  = display.newText( "Game begins in:", 10, 550, nil, font1 )
+    local timeBegin  = display.newText( "Game begins at:", 10, 550, nil, font1 )
     timeBegin.anchorX = 0
 
     local errorText = display.newText{
@@ -73,7 +73,7 @@ function scene:create( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
 	    	gameTypeText = event.target.text
-	       	-- native.setKeyboardFocus( nil )
+	       	native.setKeyboardFocus( nil )
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end
@@ -81,7 +81,7 @@ function scene:create( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
 	    	teamNumText = event.target.text
-	       	-- native.setKeyboardFocus( nil )
+	       	native.setKeyboardFocus( nil )
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end
@@ -89,7 +89,7 @@ function scene:create( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
 	    	capNumText = event.target.text
-	       	-- native.setKeyboardFocus( nil )
+	       	native.setKeyboardFocus( nil )
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end
@@ -97,7 +97,7 @@ function scene:create( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
 	    	gameLengthText = event.target.text
-	       	-- native.setKeyboardFocus( nil )
+	       	native.setKeyboardFocus( nil )
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end
@@ -105,7 +105,7 @@ function scene:create( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
 	    	TTSText = event.target.text
-	       	-- native.setKeyboardFocus( nil )
+	       	native.setKeyboardFocus( nil )
 	    elseif ( event.phase == "editing" ) then
 	    end
 	end

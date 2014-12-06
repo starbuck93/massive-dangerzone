@@ -21,6 +21,12 @@ function scene:create( event )
 	coronium:getObject( "testGameData", objId, function(e)
 		if not e.error then
 				gameTypeText = tostring(e.result.gameType)
+				gameTypeText = tostring(e.result.numberTeams)
+				teamNumText = tostring(e.result.teamNumText)
+				capNumText = tostring(e.result.numberCapts)
+				gameLengthText = tostring(e.result.gameLength)
+				TTSText = tostring(e.result.timeToStart)
+				--gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText
 			end
 	end)
 

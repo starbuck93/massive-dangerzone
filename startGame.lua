@@ -169,11 +169,7 @@ function scene:create( event )
 		if not ( gameTypeText == "default variable") then
 	--here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
 			local data = { gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText }
-			coronium:createObject( "testGameData", data, function(e) --actually uploading to the server with the data data table
-					if not e.error then
-						objId = e.result.objectId 
-					end
-				end)
+			coronium:updateObject( "testGameData", objId, data) --actually uploading to the server with the data data table
 			composer.gotoScene("inGame", {effect = "fade", time = 3000,})
 		else errorText.alpha = 1
 		end

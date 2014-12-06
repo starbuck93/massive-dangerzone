@@ -40,7 +40,7 @@ gameLengthText = "60"
 TTSText = "10"
 
 --very important... object ID for the database thing
-objId = ""
+objId = "244c9c8f3a"
 
 --retrieve the above variables and set them if they exist
 --coronium:getObject( "testGameData", "ObjectID", function(e)

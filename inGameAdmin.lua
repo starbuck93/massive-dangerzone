@@ -64,19 +64,27 @@ function scene:create( event )
 	width = display.actualContentWidth-60,
 	align = "center"}
 
-	print(string.match(os.date("%X"),"%d%d")) -- get hour in military time
-	print(string.match(os.date("%X"),"%d%d",3)) -- get minute in military time
-	print(os.date("%X")) -- can confirm it works
-	
-	local currentTime = string.match(os.date("%X"),"%d%d") .. string.match(os.date("%X"),"%d%d",3)
-	print(tonumber(currentTime))
-
+	-- print(string.match(os.date("%X"),"%d%d")) -- get hour in military time
+	-- print(string.match(os.date("%X"),"%d%d",3)) -- get minute in military time
+	-- print(os.date("%X")) -- can confirm it works
+	local time_01 = 0
+	local currentTimeHour = string.match(os.date("%X"),"%d%d")
+	local currentTimeMinute = string.match(os.date("%X"),"%d%d",3)
 	--figure out how many minutes and hours until the game begins
+	local gameStartHour = TTSText.match("%d%d") --hours
+	local gameStartMin = TTSText.match("%d%d",3) --minutes
+	--calculate difference in minutes for hours
+	if (currentTimeHour - gameStartHour < 0 ) then
+	  	time_01 = time_01 + 60*(gameStartHour - currentTimeHour)
+	  else then
+	  	time_01 = time_01 + 60*(24 + gameStartHour - currentTimeHour)
+	  end  
+	--calculate difference for minutes
+	if (currentTimeMinute - gameStartMin < 0 ) then
+	  	time_01 = time_01 + (gameStartMin - currentTimeMinute)
+	  end
+	--then put it inside the variable
 
-	TTSText.match("%d%d") --hours
-	TTSText.match("%d%d",3) --minutes
-
-	local time_01 = 10
 	-- time_01 = time_01*60
 	local function decreaseTime()
 	   time_01 = time_01-1

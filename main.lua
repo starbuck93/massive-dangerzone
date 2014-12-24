@@ -32,12 +32,28 @@ font3 = 60
 font4 = 70
 font5 = 80
 
+function getObjectGlobal()
+	coronium:getObject( "testGameData", objId, function(e)
+		if not e.error then
+				gameTypeText = tostring(e.result.gameType)
+				teamNumText = tostring(e.result.numberTeams)
+				capNumText = tostring(e.result.numberCapts)
+				gameLengthText = tostring(e.result.gameLength)
+				TTSText = tostring(e.result.timeToStart)
+				isGameEnded = tostring(e.result.gameEnded)
+				--gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText
+			end
+	end)
+end
+
+
 --a few global variables to store the input text in
 gameTypeText = "default variable"
 teamNumText = "2"
 capNumText = "1"
-gameLengthText = "11"
-TTSText = "1000" -- the military time that the game starts
+gameLengthText = "30"
+TTSText = "2130" -- the military time that the game starts
+isGameEnded = "no" --clever, I know
 
 --very important... object ID for the database thing
 objId = "244c9c8f3a"

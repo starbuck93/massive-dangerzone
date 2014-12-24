@@ -39,6 +39,7 @@ function scene:create( event )
 	local function onLoginEvent( event )
 		if not event.error then
 			coronium:addEvent( "LoginEvent", "login " .. email )
+			username = event.result.username
 			composer.gotoScene("signedIn", {effect = "fade", time = 3000,})
 		end
 	end

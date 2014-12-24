@@ -67,7 +67,32 @@ function scene:create( event )
 	width = display.actualContentWidth-60,
 	align = "center"}
 
-	local time_01 = 78
+	local gameStartHour = string.match(TTSText,"%d%d") --hours
+	local gameStartMin = string.match(TTSText,"%d%d",3) --minutes
+	local gameStartSec = 0
+	print(gameStartHour ..":" ..gameStartMin .. ":" .. gameStartSec.. " Game start time")
+
+
+	local currentTime = os.time{year=os.date("%Y"), month=os.date("%m"), day=os.date("%d"), hour=os.date("%H"), min=os.date("%M"), sec=os.date("%S")}
+	local gameStartTime = os.time{year=os.date("%Y"), month=os.date("%m"), day=os.date("%d"), hour=gameStartHour, min=gameStartMin, sec=gameStartSec}
+	
+	local time_01 = gameStartTime-currentTime
+	print(time_01)
+	local time_02 = tonumber(gameLengthText)
+	time_02 = time_02*60
+
+	
+	if (time_01 < 0) then
+		if (currentTime < tonumber(gameLengthText)*60+gameStartTime ) then --then the game should still be going on
+			print("hello")
+			time_01 = 0
+			print(time_01)
+			time_02 = 60*tonumber(gameLengthText) - (currentTime-gameStartTime) --remaining time left in the game in seconds
+			
+		else time_01 = (24*60*60)+time_01 --else the game will start tomorrow or something
+		end
+	end 
+
 	local function decreaseTime()
 	   time_01 = time_01-1
 	   local seconds = time_01%60
@@ -75,16 +100,18 @@ function scene:create( event )
 	   if seconds < 10 then
 	   		seconds = "0" .. seconds
 	   end
-	   ti_01.text =minutes .. ":" .. seconds
+	   ti_01.text = minutes .. ":" .. seconds
+	   -- print("Minutes " .. minutes .. " Seconds " .. seconds .. " " .. time_01)
 	end
 
 	timer.performWithDelay(1000,decreaseTime,time_01)
+
 
 ---------------------------------
 --configure gameplay time
 ---------------------------------
 	local GTtext = display.newText{
-	text ="Time Remaining in Game:", 
+	text = "Time Remaining in Game:", 
 	x = xCenter, 
 	y = yCenter + 250, 
 	font = native.systemFont, 
@@ -97,7 +124,7 @@ function scene:create( event )
 	GTbackground:toBack()
 
 	local ti_02 = display.newText{	
-	text ="", 
+	text = "", 
 	x = xCenter, 
 	y = yCenter+350, 
 	font = native.systemFont, 
@@ -105,7 +132,6 @@ function scene:create( event )
 	width = display.actualContentWidth-60,
 	align = "center"}
 
-	local time_02 = 78
 	local function decreaseTime2()
 	   time_02 = time_02-1
 	   local seconds = time_02%60
@@ -113,11 +139,13 @@ function scene:create( event )
 	   if seconds < 10 then
 	   		seconds = "0" .. seconds
 	   end
-	   ti_02.text =minutes .. ":" .. seconds
+	   ti_02.text = minutes .. ":" .. seconds
 	end
 
-	timer.performWithDelay(1000,decreaseTime2,time_02)
-
+	local function delayFunction(  )
+		timer.performWithDelay(1000,decreaseTime2,time_02)
+	end
+	timer.performWithDelay(time_01*1000,delayFunction)
 	localGroup:insert(gameVars)
 	localGroup:insert(gameBegins)
 	localGroup:insert(TTSbackground)

@@ -67,25 +67,40 @@ function scene:create( event )
 	-- print(string.match(os.date("%X"),"%d%d")) -- get hour in military time
 	-- print(string.match(os.date("%X"),"%d%d",3)) -- get minute in military time
 	-- print(os.date("%X")) -- can confirm it works
-	local time_01 = 0
-	local currentTimeHour = string.match(os.date("%X"),"%d%d")
-	local currentTimeMinute = string.match(os.date("%X"),"%d%d",3)
-	--figure out how many minutes and hours until the game begins
-	local gameStartHour = TTSText.match("%d%d") --hours
-	local gameStartMin = TTSText.match("%d%d",3) --minutes
-	--calculate difference in minutes for hours
-	if (currentTimeHour - gameStartHour < 0 ) then
-	  	time_01 = time_01 + 60*(gameStartHour - currentTimeHour)
-	  else then
-	  	time_01 = time_01 + 60*(24 + gameStartHour - currentTimeHour)
-	  end  
-	--calculate difference for minutes
-	if (currentTimeMinute - gameStartMin < 0 ) then
-	  	time_01 = time_01 + (gameStartMin - currentTimeMinute)
-	  end
-	--then put it inside the variable
 
-	-- time_01 = time_01*60
+	-- local time_01 = 0
+	-- local currentTimeHour = string.match(os.date("%X"),"%d%d")
+	-- local currentTimeMinute = string.match(os.date("%X"),"%d%d",3)
+	-- local currentTimeSeconds = string.match(os.date("%X"),"%d%d",6)
+	-- print(currentTimeHour .. ":" .. currentTimeMinute .. ":" .. currentTimeSeconds .. " current time")
+
+	--figure out how many minutes and hours until the game begins
+	local gameStartHour = string.match(TTSText,"%d%d") --hours
+	local gameStartMin = string.match(TTSText,"%d%d",3) --minutes
+	local gameStartSec = 0
+	print(gameStartHour ..":" .. gameStartMin .. ":" .. gameStartSec .. " Game start time")
+
+
+	local currentTime = os.time{year=os.date("%Y"), month=os.date("%m"), day=os.date("%d"), hour=os.date("%H"), min=os.date("%M"), sec=os.date("%S")}
+	local gameStartTime = os.time{year=os.date("%Y"), month=os.date("%m"), day=os.date("%d"), hour=gameStartHour, min=gameStartMin, sec=gameStartSec}
+	
+	local time_01 = gameStartTime-currentTime
+	print(time_01)
+	local time_02 = tonumber(gameLengthText)
+	time_02 = time_02*60
+
+	
+	if (time_01 < 0) then
+		if (currentTime < tonumber(gameLengthText)*60+gameStartTime ) then --then the game should still be going on
+			print("hello")
+			time_01 = 0
+			print(time_01)
+			time_02 = 60*tonumber(gameLengthText) - (currentTime-gameStartTime) --remaining time left in the game in seconds
+			
+		else time_01 = (24*60*60)+time_01 --else the game will start tomorrow or something
+		end
+	end 
+
 	local function decreaseTime()
 	   time_01 = time_01-1
 	   local seconds = time_01%60
@@ -93,10 +108,12 @@ function scene:create( event )
 	   if seconds < 10 then
 	   		seconds = "0" .. seconds
 	   end
-	   ti_01.text =minutes .. ":" .. seconds
+	   ti_01.text = minutes .. ":" .. seconds
+	   -- print("Minutes " .. minutes .. " Seconds " .. seconds .. " " .. time_01)
 	end
 
 	timer.performWithDelay(1000,decreaseTime,time_01)
+
 
 ---------------------------------
 --configure gameplay time
@@ -123,8 +140,6 @@ function scene:create( event )
 	width = display.actualContentWidth-60,
 	align = "center"}
 
-	local time_02 = tonumber(gameLengthText)
-	time_02 = time_02*60
 	local function decreaseTime2()
 	   time_02 = time_02-1
 	   local seconds = time_02%60

@@ -6,6 +6,9 @@ local localGroup = display.newGroup()
 
 
 function scene:create( event )
+
+	getObjectGlobal()
+	
 	local back = widget.newButton{
 		 width = 200,
 	 	height = 75,

@@ -82,20 +82,20 @@ function scene:create( event )
 		--game1:setEnabled(false)
 	end
 
-	local extraInfo = display.newText{
-	text = "Normally, this button will not do anything when it says no game but for now it will move on to the game screen", 
-	x = xCenter, 
-	y = yCenter+yCenter/2, 
-	font = native.systemFont, 
-	fontSize = font1,
-	width = display.actualContentWidth-50,
-	align = "center"}
+	-- local extraInfo = display.newText{
+	-- text = "Normally, this button will not do anything when it says no game but for now it will move on to the game screen", 
+	-- x = xCenter, 
+	-- y = yCenter+yCenter/2, 
+	-- font = native.systemFont, 
+	-- fontSize = font1,
+	-- width = display.actualContentWidth-50,
+	-- align = "center"}
 	
 	localGroup:insert(logout)
 	localGroup:insert(welcomeText)
 	localGroup:insert(welcomeText2)
 	localGroup:insert(game1)
-	localGroup:insert(extraInfo)
+	-- localGroup:insert(extraInfo)
 end
 
 

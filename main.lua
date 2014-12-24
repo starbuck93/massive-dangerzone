@@ -36,8 +36,8 @@ font5 = 80
 gameTypeText = "default variable"
 teamNumText = "2"
 capNumText = "1"
-gameLengthText = "60"
-TTSText = "10"
+gameLengthText = "11"
+TTSText = "1000" -- the military time that the game starts
 
 --very important... object ID for the database thing
 objId = "244c9c8f3a"

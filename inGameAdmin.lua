@@ -54,9 +54,9 @@ function scene:create( event )
 	TTSbackground:setFillColor( .6,.6,.6 )
 	TTSbackground:toBack()
 
-
+	--the text variable where the countdown is AKA Game Begins in
 	local ti_01 = display.newText{	
-	text ="", 
+	text = "", 
 	x = xCenter, 
 	y = yCenter+100, 
 	font = native.systemFont, 
@@ -64,7 +64,20 @@ function scene:create( event )
 	width = display.actualContentWidth-60,
 	align = "center"}
 
-	local time_01 = 78
+	print(string.match(os.date("%X"),"%d%d")) -- get hour in military time
+	print(string.match(os.date("%X"),"%d%d",3)) -- get minute in military time
+	print(os.date("%X")) -- can confirm it works
+	
+	local currentTime = string.match(os.date("%X"),"%d%d") .. string.match(os.date("%X"),"%d%d",3)
+	print(tonumber(currentTime))
+
+	--figure out how many minutes and hours until the game begins
+
+	TTSText.match("%d%d") --hours
+	TTSText.match("%d%d",3) --minutes
+
+	local time_01 = 10
+	-- time_01 = time_01*60
 	local function decreaseTime()
 	   time_01 = time_01-1
 	   local seconds = time_01%60
@@ -81,7 +94,7 @@ function scene:create( event )
 --configure gameplay time
 ---------------------------------
 	local GTtext = display.newText{
-	text ="Time Remaining in Game:", 
+	text = "Time Remaining in Game:", 
 	x = xCenter, 
 	y = yCenter + 250, 
 	font = native.systemFont, 
@@ -94,7 +107,7 @@ function scene:create( event )
 	GTbackground:toBack()
 
 	local ti_02 = display.newText{	
-	text ="", 
+	text = "", 
 	x = xCenter, 
 	y = yCenter+350, 
 	font = native.systemFont, 
@@ -102,7 +115,8 @@ function scene:create( event )
 	width = display.actualContentWidth-60,
 	align = "center"}
 
-	local time_02 = 78
+	local time_02 = tonumber(gameLengthText)
+	time_02 = time_02*60
 	local function decreaseTime2()
 	   time_02 = time_02-1
 	   local seconds = time_02%60
@@ -110,10 +124,53 @@ function scene:create( event )
 	   if seconds < 10 then
 	   		seconds = "0" .. seconds
 	   end
-	   ti_02.text =minutes .. ":" .. seconds
+	   ti_02.text = minutes .. ":" .. seconds
 	end
 
-	timer.performWithDelay(1000,decreaseTime2,time_02)
+	local function delayFunction(  )
+		timer.performWithDelay(1000,decreaseTime2,time_02)
+	end
+	timer.performWithDelay(time_01*1000,delayFunction)
+
+    -- Handler that gets notified when the alert closes
+    local function onComplete( event )
+       if event.action == "clicked" then
+            local i = event.index
+            if i == 1 then
+                -- Do nothing; dialog will simply dismiss
+            elseif i == 2 then
+                -- Open URL if "Learn More" (second button) was clicked
+                native.showAlert( "Killed", "You have successfully killed the game.", {"Got it."})
+                composer.gotoScene("adminOptions")
+            end
+        end
+    end
+
+    -- Show alert with two buttons
+    local function killGameAlert( ... )
+        native.showAlert( "Kill Game?", "Are you sure you would like to kill the game?.", { "Cancel", "Yes" }, onComplete )
+    end
+
+
+    local killGame = widget.newButton
+    {
+        label = "KILL GAME",
+        labelColor = {default ={1,1,1,1}, over={1,0,0,1} },
+        font = nil,
+        fontSize = 48,
+        emboss = true,
+        shape="roundedRect",
+        width = display.contentWidth/2,
+        height = 100,
+        cornerRadius = 50,
+        labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+        fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
+        onRelease = killGameAlert
+    }
+
+    killGame.x = xCenter
+    killGame.y = display.contentHeight-150
+
 
 	localGroup:insert(gameVars)
 	localGroup:insert(gameBegins)
@@ -121,6 +178,7 @@ function scene:create( event )
 	localGroup:insert(GTbackground)
 	localGroup:insert(ti_01)
 	localGroup:insert(ti_02)
+	localGroup:insert(killGame)
 	--localGroup:insert()
 	--localGroup:insert()
 	localGroup:insert(goToOptions)

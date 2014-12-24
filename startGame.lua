@@ -54,6 +54,7 @@ function scene:create( event )
     timeLimit.anchorX = 0
     local timeBegin  = display.newText( "Game begins at:", 10, 550, nil, font1 )
     timeBegin.anchorX = 0
+    local gameTypeTemp = ""
 
     local errorText = display.newText{
 	text = "Please specify a game name such as 'Team Deathmatch' or 'Zombies'", 
@@ -72,7 +73,7 @@ function scene:create( event )
 	local function gameTypeTextListener( event )
 	    if ( event.phase == "began" ) then
 	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
-	    	gameTypeText = event.target.text
+	    	gameTypeTemp = event.target.text
 	       	native.setKeyboardFocus( nil )
 	    elseif ( event.phase == "editing" ) then
 	    end
@@ -166,11 +167,12 @@ function scene:create( event )
 -------------------------------------------
 
 	local function toGame( event )
-		if not ( gameTypeText == "default variable") then
+		if not ( gameTypeTemp == "") then
+			gameTypeText = gameTypeTemp
 	--here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
 			local data = { gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText }
 			coronium:updateObject( "testGameData", objId, data) --actually uploading to the server with the data data table
-			composer.gotoScene("inGame", {effect = "fade", time = 3000,})
+			composer.gotoScene("inGameAdmin", {effect = "fade", time = 3000,})
 		else errorText.alpha = 1
 		end
 	end

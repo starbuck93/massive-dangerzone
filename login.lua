@@ -3,6 +3,7 @@ local xCenter = display.contentWidth
 local yCenter = display.contentHeight
 local scene = composer.newScene()
 local localGroup = display.newGroup()
+
 ads = require ( "ads" )
 
 local function moveScenes()
@@ -20,7 +21,7 @@ function scene:create( event )
 	--Ads Loading Here
 	ads.init( "admob", "ca-app-pub-1135191116314099/8859539762" )
 
-	ads.show( "banner", { x=0, y=0})
+	ads.show( "banner", { x=0, y=yCenter})
 
 	local password = ""
 

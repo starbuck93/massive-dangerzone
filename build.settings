@@ -1,6 +1,13 @@
 -- build.settings for project: FinalNoName
 settings =
 {
+    plugins =
+    {
+        ["plugin.google.play.services"] =
+        {
+            publisherId = "com.coronalabs"
+        },
+    },      
     orientation =
     {
         default = "portrait",  --initial launch orientation
@@ -8,10 +15,11 @@ settings =
     },
     android =
     {
-        versionCode = "3",
+        versionCode = "4",
         usesPermissions =
         {
             "android.permission.INTERNET",
+            "android.permission.ACCESS_NETWORK_STATE",
         },
     },
 }

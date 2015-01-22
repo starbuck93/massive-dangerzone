@@ -1,4 +1,4 @@
---project: FinalNoNameYet
+--project: NerfAppTimerProject
 --Adam Starbuck, Ryan Podany 2014
 
 globals = require( "globals" ) -- make this global

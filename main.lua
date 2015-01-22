@@ -93,7 +93,7 @@ help = widget.newButton --another global value that we can edit the alpha of
 	emboss = true
 }
 help.x = display.contentWidth-10
-help.y = display.contentHeight-10
+help.y = 100
 help.anchorX = 1
 help.anchorY = 1
 help.alpha = 0

@@ -53,7 +53,7 @@ function scene:create( event )
     numTeams.anchorX = 0
     local numCapt    = display.newText( "# of captains per team:", 10, 350, nil, font1 )
     numCapt.anchorX = 0
-    local timeLimit  = display.newText( "Time Limit:",10, 450, nil, font1 )
+    local timeLimit  = display.newText( "Game Time Limit:",10, 450, nil, font1 )
     timeLimit.anchorX = 0
     local timeBegin  = display.newText( "Game begins at:", 10, 550, nil, font1 )
     timeBegin.anchorX = 0

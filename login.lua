@@ -7,10 +7,12 @@ local localGroup = display.newGroup()
 ads = require ( "ads" )
 
 local function moveScenes()
+	ads.hide()
 	composer.gotoScene("signedIn")
 end
 
 local function moveScenesAdmin()
+	ads.hide()
 	composer.gotoScene("adminOptions")
 end
 
@@ -34,7 +36,7 @@ function scene:create( event )
         label = "<-- back",
         fontSize = font2,
         labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-        onRelease = function() composer.gotoScene("menu"); end,
+        onRelease = function() composer.gotoScene("menu"); ads.hide(); end,
     }
 
 	local function setUsername( event )
@@ -120,7 +122,7 @@ function scene:create( event )
 	admin.x = display.contentCenterX
 	admin.y = display.contentCenterY+350	
 
-
+	
 	localGroup:insert(text1)
 	localGroup:insert(text2)
 	localGroup:insert(nerf)

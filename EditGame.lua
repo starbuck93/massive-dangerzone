@@ -8,17 +8,24 @@ local yCenter = display.contentHeight/2
 local scene = composer.newScene()
 local localGroup = display.newGroup()
 
-local function moveScenes( event )
-	--if event.phase == "ended" then
-		--print("Ended")
-	composer.gotoScene("adminGameStatus", {effect = "fade", time = 1000})
-	--end
-end
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
-	    local back = widget.newButton{
+	ads.init( "admob", "ca-app-pub-1135191116314099/8859539762" )
+
+	ads.show( "banner", { x=0, y=display.contentHeight})
+
+
+	local function moveScenes( event )
+		--if event.phase == "ended" then
+			--print("Ended")
+		ads.hide()
+		composer.gotoScene("adminGameStatus", {effect = "fade", time = 1000})
+		--end
+	end
+
+	local back = widget.newButton{
         width = 200,
 	 	height = 75,
         left = 5,
@@ -27,7 +34,7 @@ function scene:create( event )
         label = "<-- back",
         fontSize = 50,
    		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-        onRelease = function() composer.gotoScene("adminOptions"); end,
+        onRelease = function() composer.gotoScene("adminOptions"); ads.hide() end,
     }
     location = composer.getSceneName( "previous" )
 

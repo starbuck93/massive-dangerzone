@@ -7,6 +7,10 @@ local localGroup = display.newGroup()
 
 function scene:create( event )
 
+	--ads.init( "admob", "ca-app-pub-1135191116314099/8859539762" )
+	--ads.show( "banner", { x=0, y=yCenter})
+
+
 	getObjectGlobal()
 	
 	local back = widget.newButton{
@@ -18,7 +22,7 @@ function scene:create( event )
    		label = "<-- back",
    		fontSize = font2,
    		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-   		onRelease = function() composer.gotoScene("menu"); end,
+   		onRelease = function() composer.gotoScene("menu"); ads.hide(); end,
     }
 
     local sceneGroup = self.view

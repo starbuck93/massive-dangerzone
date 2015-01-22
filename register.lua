@@ -9,6 +9,8 @@ local scene = composer.newScene()
 local localGroup = display.newGroup()
 
 
+
+
 	emailBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+150, xCenter/2, 100)
 	emailBox.inputType = "email"
 	emailBox.size = "10"

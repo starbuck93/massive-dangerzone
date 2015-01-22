@@ -103,6 +103,13 @@ function scene:create( event )
 
 	local function decreaseTime()
 	   time_01 = time_01-1
+
+
+		if time_01 == 0 then
+			gameStartAudio = audio.loadSound( "sounds/Game_S.mp3" )
+			audio.play( gameStartAudio)
+		end
+
 	   local seconds = time_01%60
 	   local minutes = math.floor(time_01 / 60)
 	   if seconds < 10 then
@@ -115,9 +122,14 @@ function scene:create( event )
 	timer.performWithDelay(1000,decreaseTime,time_01)
 
 
+
+
 ---------------------------------
 --configure gameplay time
 ---------------------------------
+
+
+
 	local GTtext = display.newText{
 	text = "Time Remaining in Game:", 
 	x = xCenter, 
@@ -142,6 +154,12 @@ function scene:create( event )
 
 	local function decreaseTime2()
 	   time_02 = time_02-1
+
+	   	if time_02 == 0 then
+			gameStartAudio = audio.loadSound( "sounds/Game_E.mp3" )
+			audio.play( gameStartAudio)
+		end
+
 	   local seconds = time_02%60
 	   local minutes = math.floor(time_02 / 60)
 	   if seconds < 10 then

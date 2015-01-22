@@ -119,6 +119,8 @@ function scene:create( event )
 	localGroup:insert(text4)
 	localGroup:insert(text1)
 	localGroup:insert(text2)
+	localGroup:insert(text3)
+	localGroup:insert(text5)
 	localGroup:insert(submit)
 	localGroup:insert(back)
 	localGroup:insert(usernameBox)
@@ -176,6 +178,11 @@ function scene:hide(event)
 	localGroup:removeSelf( )
 	composer.removeScene("register")
 end
+
+
+
+-- Add the key event listener
+Runtime:addEventListener( "key", onKeyEvent )
 
 
 -- "createScene" is called whenever the scene is FIRST called

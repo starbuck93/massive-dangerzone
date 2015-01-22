@@ -32,6 +32,12 @@ font3 = 60
 font4 = 70
 font5 = 80
 
+-------------------------------
+-----enable back button-----
+-------------------------------
+
+
+
 function getObjectGlobal()
 	coronium:getObject( "testGameData", objId, function(e)
 		if not e.error then

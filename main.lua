@@ -4,7 +4,8 @@
 globals = require( "globals" ) -- make this global
 coronium = require( "mod_coronium" ) -- make this global
 composer = require("composer") -- make this global
-widget = require ( "widget" )
+widget = require ( "widget" ) -- make this global
+ads = require ( "ads" ) -- make this global
 
 display.setDefault( "background", 40/255, 66/255, 99/255, 1 )
 display.setStatusBar( display.HiddenStatusBar )
@@ -99,9 +100,9 @@ help = widget.newButton --another global value that we can edit the alpha of
 	emboss = true
 }
 help.x = display.contentWidth-10
-help.y = 100
+help.y = 10
 help.anchorX = 1
-help.anchorY = 1
+help.anchorY = 0
 help.alpha = 0
 
 

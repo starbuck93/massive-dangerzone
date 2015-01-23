@@ -7,8 +7,8 @@ local localGroup = display.newGroup()
 
 function scene:create( event )
 
-	--ads.init( "admob", "ca-app-pub-1135191116314099/8859539762" )
-	--ads.show( "banner", { x=0, y=yCenter})
+	ads.init( "admob", "ca-app-pub-1135191116314099/8859539762" )
+	ads.show( "banner", { x=0, y=yCenter})
 
 
 	getObjectGlobal()
@@ -22,7 +22,7 @@ function scene:create( event )
    		label = "<-- back",
    		fontSize = font2,
    		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-   		onRelease = function() composer.gotoScene("menu"); ads.hide(); end,
+   		onRelease = function() ads.hide(); composer.gotoScene("menu"); end,
     }
 
     local sceneGroup = self.view
@@ -43,13 +43,16 @@ function scene:create( event )
 
 
 	local function moveScenes_01()
+		ads.hide()
 		composer.gotoScene("startGame", {effect = "fade", time = 3000,})
 	end
 	local function moveScenes_02()
+		ads.hide()
 		composer.gotoScene("EditGame", {effect = "fade", time = 3000,})
 	end
 	local function moveScenes_03()
 		--instead of moving to a scene here, maybe we'll want to load another scene with some data or something
+		ads.hide()
 		composer.gotoScene("inGameAdmin", {effect = "fade", time = 3000,})
 	end
 

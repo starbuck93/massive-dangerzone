@@ -4,15 +4,15 @@ local yCenter = display.contentHeight
 local scene = composer.newScene()
 local localGroup = display.newGroup()
 
-ads = require ( "ads" )
-
 local function moveScenes()
 	ads.hide()
+	coronium:addEvent( "LoginEvent", "login normal" )
 	composer.gotoScene("signedIn")
 end
 
 local function moveScenesAdmin()
 	ads.hide()
+	coronium:addEvent( "LoginEvent", "login admin" )
 	composer.gotoScene("adminOptions")
 end
 
@@ -22,7 +22,6 @@ function scene:create( event )
 
 	--Ads Loading Here
 	ads.init( "admob", "ca-app-pub-1135191116314099/8859539762" )
-
 	ads.show( "banner", { x=0, y=yCenter})
 
 	local password = ""
@@ -36,7 +35,7 @@ function scene:create( event )
         label = "<-- back",
         fontSize = font2,
         labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-        onRelease = function() composer.gotoScene("menu"); ads.hide(); end,
+        onRelease = function() ads.hide(); composer.gotoScene("menu"); end,
     }
 
 	local function setUsername( event )
@@ -48,7 +47,7 @@ function scene:create( event )
 	local function onLoginEvent( event )
 		if not event.error then
 			coronium:addEvent( "LoginEvent", "login " .. email )
-			username = event.result.username
+			--username = event.result.username
 			composer.gotoScene("signedIn", {effect = "fade", time = 3000,})
 		end
 	end

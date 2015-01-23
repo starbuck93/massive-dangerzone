@@ -16,13 +16,13 @@ end
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
-	local function setUsername( event )
-		if not event.error then
-			username = event.result.username
-		end
-	end
+	-- local function setUsername( event )
+	-- 	if not event.error then
+	-- 		username = event.result.username
+	-- 	end
+	-- end
 			
-	coronium:getMe(setUsername)
+	-- coronium:getMe(setUsername)
 
 
 	--retrieve the above variables and set them if they exist
@@ -45,7 +45,8 @@ function scene:create( event )
 		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
 	    onRelease = logoutEvent
 	}
-	logout.x = display.contentWidth-75
+	logout.x = 0
+	logout.anchorX = 0
 	logout.y = 50
 
 
@@ -94,7 +95,6 @@ function scene:show(event)
 	localGroup.alpha = 1
 	composer.removeHidden( true )
 	nerfImage.alpha = .2
-
 end
 
 function scene:hide(event)

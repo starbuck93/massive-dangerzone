@@ -8,14 +8,21 @@ local localGroup = display.newGroup()
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
+	getObjectGlobal() --setting global variables for the first time
+
 	help.alpha = 1
 	local nerf = display.newImage( "pics/NERF_transparent.png",xCenter/2,200 )
+
+	--Ads Loading Here
+	ads.init( "admob", "ca-app-pub-1135191116314099/8859539762" )
+	ads.show( "banner", { x=0, y=yCenter})
 
 	local message = display.newText("NERF CLUB",xCenter/2,yCenter/2-200,nil,60)
 	message:setFillColor(232/255, 100/255, 37/255)
 
 
 	local function loginFunction( event )
+		ads.hide()	
 		composer.gotoScene( "login" )
 	end
 
@@ -37,6 +44,7 @@ function scene:create( event )
 
 
 	local function registerFunction( event )
+		ads.hide()
 		composer.gotoScene( "register" )
 	end
 

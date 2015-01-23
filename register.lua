@@ -9,8 +9,6 @@ local scene = composer.newScene()
 local localGroup = display.newGroup()
 
 
-
-
 	emailBox = native.newTextField( xCenter/2+xCenter/4, yCenter/4+150, xCenter/2, 100)
 	emailBox.inputType = "email"
 	emailBox.size = "10"
@@ -32,12 +30,9 @@ end
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
-
-	ads = require ( "ads" )
-
-
+	
+	--Ads Loading Here
 	ads.init( "admob", "ca-app-pub-1135191116314099/8859539762" )
-
 	ads.show( "banner", { x=0, y=yCenter})
 
 
@@ -50,7 +45,7 @@ function scene:create( event )
         label = "<-- back",
         fontSize = font2,
         labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-        onRelease = function() composer.gotoScene("menu"); ads.hide(); end,
+        onRelease = function() ads.hide(); composer.gotoScene("menu"); end,
     }
     location = composer.getSceneName( "previous" )
 
@@ -90,7 +85,7 @@ function scene:create( event )
 	local text2 = display.newText("Password:",20,yCenter/4+350,nil,font2)
 	text2.anchorX = 0
 	local text3 = display.newText( "Make your username fun!",xCenter/2, yCenter/4+450,nil, font1 )
-	local text5 = display.newText( "It will be your display name for future rollouts",xCenter/2, yCenter/4+500,nil, font1 )
+	local text5 = display.newText( "It will be your display name for future versions.",xCenter/2, yCenter/4+500,nil, font1 )
 
 	local submit = widget.newButton
 	{
@@ -181,8 +176,8 @@ end
 
 
 
--- Add the key event listener
-Runtime:addEventListener( "key", onKeyEvent )
+-- -- Add the key event listener
+-- Runtime:addEventListener( "key", onKeyEvent )
 
 
 -- "createScene" is called whenever the scene is FIRST called

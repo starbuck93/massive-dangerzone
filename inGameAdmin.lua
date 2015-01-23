@@ -5,18 +5,6 @@ local scene = composer.newScene()
 
 
 function scene:create( event )
-	local goToOptions = widget.newButton{
-	height = 75,
-	width = 350,
-    left = 5,
-    top = 5,
-    id = "options",
-    label = "Admin Options",
-    fontSize = font2,
-    labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-    onRelease = function() composer.gotoScene("adminOptions"); end,
-    }
-
 
 	local gameVars = display.newText{
 	text = gameTypeText .. " with " .. teamNumText .. " teams and game length " .. gameLengthText .. " minutes.", 
@@ -106,8 +94,8 @@ function scene:create( event )
 
 
 		if time_01 == 0 then
-			gameStartAudio = audio.loadSound( "sounds/Game_S.mp3" )
-			audio.play( gameStartAudio)
+			gameStartAudio = audio.loadSound( "sounds/game_start.wav" )
+			audio.play(gameStartAudio)
 		end
 
 	   local seconds = time_01%60
@@ -156,8 +144,8 @@ function scene:create( event )
 	   time_02 = time_02-1
 
 	   	if time_02 == 0 then
-			gameStartAudio = audio.loadSound( "sounds/Game_E.mp3" )
-			audio.play( gameStartAudio)
+			gameOverAudio = audio.loadSound( "sounds/game_over.wav" )
+			audio.play( gameOverAudio)
 		end
 
 	   local seconds = time_02%60
@@ -182,6 +170,8 @@ function scene:create( event )
             elseif i == 2 then
                 -- Open URL if "Learn More" (second button) was clicked
                 native.showAlert( "Killed", "You have successfully killed the game.", {"Got it."})
+                audio.dispose(gameStartAudio)
+                audio.dispose(gameOverAudio)
                 composer.gotoScene("adminOptions")
             end
         end
@@ -211,6 +201,19 @@ function scene:create( event )
 
     killGame.x = xCenter
     killGame.y = display.contentHeight-150
+
+
+	local goToOptions = widget.newButton{
+	height = 75,
+	width = 350,
+    left = 5,
+    top = 5,
+    id = "options",
+    label = "Admin Options",
+    fontSize = font2,
+    labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+    onRelease = function() audio.dispose(gameStartAudio); audio.dispose(gameOverAudio); composer.gotoScene("adminOptions"); end,
+    }
 
 
 	localGroup:insert(gameVars)

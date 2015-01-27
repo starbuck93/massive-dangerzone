@@ -10,7 +10,7 @@ local scene = composer.newScene()
 local localGroup = display.newGroup()
 
 local function moveScenes( event )
-	composer.gotoScene("playerGameStatus", {effect = "fade", time = 1000})
+	composer.gotoScene("UserPages.playerGameStatus", {effect = "fade", time = 1000})
 end
 
 --Called if the scene hasn't been previously seen

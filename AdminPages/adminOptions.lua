@@ -44,16 +44,16 @@ function scene:create( event )
 
 	local function moveScenes_01()
 		ads.hide()
-		composer.gotoScene("startGame", {effect = "fade", time = 3000,})
+		composer.gotoScene("AdminPages.startGame", {effect = "fade", time = 3000,})
 	end
 	local function moveScenes_02()
 		ads.hide()
-		composer.gotoScene("EditGame", {effect = "fade", time = 3000,})
+		composer.gotoScene("AdminPages.EditGame", {effect = "fade", time = 3000,})
 	end
 	local function moveScenes_03()
 		--instead of moving to a scene here, maybe we'll want to load another scene with some data or something
 		ads.hide()
-		composer.gotoScene("inGameAdmin", {effect = "fade", time = 3000,})
+		composer.gotoScene("AdminPages.inGameAdmin", {effect = "fade", time = 3000,})
 	end
 
 

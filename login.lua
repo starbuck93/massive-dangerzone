@@ -7,13 +7,13 @@ local localGroup = display.newGroup()
 local function moveScenes()
 	ads.hide()
 	coronium:addEvent( "LoginEvent", "login normal" )
-	composer.gotoScene("signedIn")
+	composer.gotoScene("UserPages.signedIn")
 end
 
 local function moveScenesAdmin()
 	ads.hide()
 	coronium:addEvent( "LoginEvent", "login admin" )
-	composer.gotoScene("adminOptions")
+	composer.gotoScene("AdminPages.adminOptions")
 end
 
 

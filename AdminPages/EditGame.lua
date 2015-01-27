@@ -21,7 +21,7 @@ function scene:create( event )
 		--if event.phase == "ended" then
 			--print("Ended")
 		ads.hide()
-		composer.gotoScene("adminGameStatus", {effect = "fade", time = 1000})
+		composer.gotoScene("AdminPages.adminGameStatus", {effect = "fade", time = 1000})
 		--end
 	end
 

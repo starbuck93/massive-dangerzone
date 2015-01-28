@@ -48,7 +48,7 @@ function scene:create( event )
 	end
 	local function moveScenes_02()
 		ads.hide()
-		composer.gotoScene("AdminPages.EditGame", {effect = "fade", time = 3000,})
+		composer.gotoScene("AdminPages.pinCheck", {effect = "fade", time = 3000,})
 	end
 	local function moveScenes_03()
 		--instead of moving to a scene here, maybe we'll want to load another scene with some data or something

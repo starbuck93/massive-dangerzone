@@ -8,18 +8,28 @@ local localGroup = display.newGroup()
 --Called if the scene hasn't been previously seen
 function scene:create( event )
 
-	local function pin1Listener( event )
-	    if ( event.phase == "began" ) then
-	    elseif ( event.phase == "ended" or event.phase == "submitted" ) then
-	    	pin1 = event.target.text
-	       	native.setKeyboardFocus( nil )
-	    elseif ( event.phase == "editing" ) then
-	    end
-	end
+	-- local function pin1Listener( event )
+	--     if ( event.phase == "began" ) then
+	--     elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+	--     	pin1 = event.target.text
+	--        	native.setKeyboardFocus( nil )
+	--     elseif ( event.phase == "editing" ) then
+	--     end
+	-- end
 	
+	-- local function pin2TextListener( event )
+	--     if ( event.phase == "began" ) then
+	--     elseif ( event.phase == "ended" or event.phase == "submitted" ) then
+	--     	pin2 = event.target.text
+	--        	native.setKeyboardFocus( nil )
+	--     elseif ( event.phase == "editing" ) then
+	--     end
+	-- end
 
 
-	pin1 = display.newText( "Input 4 digit pin for ADMIN use:", xCenter/2, yCenter, [width, height,], nil, font2 )
+
+
+	pin1 = display.newText( "Create 4 digit pin for ADMIN use:", xCenter/2, yCenter, [width, height,], nil, font2 )
 
 	TTS = native.newTextField( xCenter + 270,450, xCenter, 100)
 	TTS.inputType = "number"
@@ -27,20 +37,22 @@ function scene:create( event )
 	TTS.placeholder = "(1234)"
 	TTS:addEventListener( "userInput", TTSTextListener )
 
+	-- pin2 = display.newText( "Create 4 digit pin for PUBLIC use:", xCenter+(xCenter/2), yCenter, [width, height,], nil, font2 )
+
+	-- TTS = native.newTextField( xCenter + 270,550, xCenter, 100)
+	-- TTS.inputType = "number"
+	-- TTS.size = "10"
+	-- TTS.placeholder = "(1234)"
+	-- TTS:addEventListener( "userInput", TTSTextListener )
 
 
-
-	local function toPage( event )
+	local function toGame( event )
 		if not ( gameTypeTemp == "") then
 			gameTypeText = gameTypeTemp
 	--here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
-			local data = { adminPin = pin1, }
+			local data = { adminPin = pin1, publicPin = pin2 }
 			coronium:updateObject( "testGameData", objId, data) --actually uploading to the server with the data data table
-			
-
-			--composer.gotoScene("inGameAdmin", {effect = "fade", time = 3000,})
-			--CARRY OVER PAGE NAME HERE ^^
-
+			composer.gotoScene("AdminPages.inGameAdmin", {effect = "fade", time = 3000,})
 		else errorText.alpha = 1
 		end
 	end
@@ -48,7 +60,7 @@ function scene:create( event )
 	local SAG = widget.newButton
 	{
 		id = SAG,
-	    label = "Enter",
+	    label = "Start",
 	    font = nil,
 	    fontSize = font4,
 	    emboss = true,
@@ -78,6 +90,15 @@ function scene:hide(event)
 
 end
 
+-- function scene:destroy( event )
+
+--     local sceneGroup = self.view
+
+--     -- Called prior to the removal of scene's view ("sceneGroup").
+--     -- Insert code here to clean up the scene.
+--     -- Example: remove display objects, save state, etc.
+-- end
+
 
 -- "createScene" is called whenever the scene is FIRST called
 scene:addEventListener( "create", scene )
@@ -91,3 +112,4 @@ scene:addEventListener( "hide", scene )
 --
 --scene:addEventListener( "destroy", scene )
 return scene
+

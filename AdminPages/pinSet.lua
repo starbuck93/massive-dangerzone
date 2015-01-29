@@ -1,12 +1,26 @@
 --scene: menu
-local xCenter = display.contentWidth
-local yCenter = display.contentHeight
+local xCenter = display.contentCenterX
+local yCenter = display.contentCenterY
 local scene = composer.newScene()
 local localGroup = display.newGroup()
 
 
 --Called if the scene hasn't been previously seen
 function scene:create( event )
+
+	local back = widget.newButton{
+        width = 200,
+	 	height = 75,
+        left = 5,
+        top = 5,
+        id = "back",
+        label = "<-- back",
+        fontSize = 50,
+   		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+        onRelease = function() composer.gotoScene("adminOptions"); ads.hide() end,
+    }
+    location = composer.getSceneName( "previous" )
+
 
 	-- local function pin1Listener( event )
 	--     if ( event.phase == "began" ) then
@@ -29,13 +43,13 @@ function scene:create( event )
 
 
 
-	pin1 = display.newText( "Create 4 digit pin for ADMIN use:", xCenter/2, yCenter, [width, height,], nil, font2 )
+	pin1 = display.newText( "Create 4 digit pin for ADMIN use:", xCenter/2, yCenter, nil, font2 )
 
 	TTS = native.newTextField( xCenter + 270,450, xCenter, 100)
 	TTS.inputType = "number"
 	TTS.size = "10"
 	TTS.placeholder = "(1234)"
-	TTS:addEventListener( "userInput", TTSTextListener )
+--	TTS:addEventListener( "userInput", TTSTextListener )
 
 	-- pin2 = display.newText( "Create 4 digit pin for PUBLIC use:", xCenter+(xCenter/2), yCenter, [width, height,], nil, font2 )
 
@@ -50,9 +64,9 @@ function scene:create( event )
 		if not ( gameTypeTemp == "") then
 			gameTypeText = gameTypeTemp
 	--here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
-			local data = { adminPin = pin1, publicPin = pin2 }
+			local data = { adminPin = pin1}
 			coronium:updateObject( "testGameData", objId, data) --actually uploading to the server with the data data table
-			composer.gotoScene("AdminPages.inGameAdmin", {effect = "fade", time = 3000,})
+		--	composer.gotoScene("AdminPages.inGameAdmin", {effect = "fade", time = 3000,})
 		else errorText.alpha = 1
 		end
 	end
@@ -74,6 +88,12 @@ function scene:create( event )
 		fillColor = { default={ 232/255, 100/255, 37/255}, over={ 1, 1, 1, 1 } },
 	    onEvent = toGame
 	}
+
+	localGroup:insert(SAG)
+	localGroup:insert(pin1)
+	localGroup:insert(TTS)
+	localGroup:insert(back)
+
 
 
 

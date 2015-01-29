@@ -17,6 +17,18 @@ function scene:create( event )
 	--     end
 	-- end
 
+	local back = widget.newButton{
+        width = 200,
+	 	height = 75,
+        left = 5,
+        top = 5,
+        id = "back",
+        label = "<-- back",
+        fontSize = 50,
+   		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
+        onRelease = function() composer.gotoScene("AdminPages.adminOptions"); ads.hide() end,
+    }
+    location = composer.getSceneName( "previous" )
 
 
 	pin1 = display.newText( "Please enter your 4 digit pin:", xCenter, yCenter, nil, font2 )
@@ -57,6 +69,10 @@ function scene:create( event )
 	    onEvent = toGame
 	}
 
+	localGroup:insert(SAG)
+	localGroup:insert(pin1)
+	localGroup:insert(TTS)
+	localGroup:insert(back)
 
 
 end

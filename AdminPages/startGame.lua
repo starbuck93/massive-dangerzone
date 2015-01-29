@@ -167,12 +167,12 @@ function scene:create( event )
 -------------------------------------------
 
 	local function toGame( event )
-		if not ( gameTypeTemp == "") then
-			gameTypeText = gameTypeTemp
+		 if not ( gameTypeTemp == "") then
+		 	gameTypeText = gameTypeTemp
 	--here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
-			local data = { gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText }
-			coronium:updateObject( "testGameData", objId, data) --actually uploading to the server with the data data table
-			composer.gotoScene("pinSet", {effect = "fade", time = 3000,})
+		local data = { gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText }
+		coronium:updateObject( "testGameData", objId, data) --actually uploading to the server with the data data table
+		composer.gotoScene("AdminPages.pinSet", {effect = "fade", time = 3000,})
 		else errorText.alpha = 1
 		end
 	end

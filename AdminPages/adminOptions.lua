@@ -26,9 +26,6 @@ function scene:create( event )
     }
 
     local sceneGroup = self.view
-
-    -- Initialize the scene here.
-    -- Example: add display objects to "sceneGroup", add touch listeners, etc.
 	
 	local options = {
 	text ="Oh, hey Admin ;) Welcome to your main hub! Choose an action. What would you like to do?",

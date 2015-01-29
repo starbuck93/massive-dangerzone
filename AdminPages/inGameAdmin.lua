@@ -223,8 +223,6 @@ function scene:create( event )
 	localGroup:insert(ti_01)
 	localGroup:insert(ti_02)
 	localGroup:insert(killGame)
-	--localGroup:insert()
-	--localGroup:insert()
 	localGroup:insert(goToOptions)
 	localGroup:insert(GTtext)
 

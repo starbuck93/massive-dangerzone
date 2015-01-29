@@ -48,7 +48,6 @@ function getObjectGlobal()
 				gameLengthText = tostring(e.result.gameLength)
 				TTSText = tostring(e.result.timeToStart)
 				isGameEnded = tostring(e.result.gameEnded)
-				--gameType = gameTypeText, numberTeams = teamNumText, numberCapts = capNumText, gameLength = gameLengthText, timeToStart =  TTSText
 			end
 	end)
 end

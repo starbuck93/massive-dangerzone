@@ -17,7 +17,7 @@ function scene:create( event )
         label = "<-- back",
         fontSize = 50,
    		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-        onRelease = function() composer.gotoScene("adminOptions"); ads.hide() end,
+        onRelease = function() composer.gotoScene("AdminPages.startGame"); ads.hide() end,
     }
     location = composer.getSceneName( "previous" )
 
@@ -66,7 +66,7 @@ function scene:create( event )
 	--here we're going to upload some information to the server and hopefully pull it down successfully on other client devices
 			local data = { adminPin = pin1}
 			coronium:updateObject( "testGameData", objId, data) --actually uploading to the server with the data data table
-		--	composer.gotoScene("AdminPages.inGameAdmin", {effect = "fade", time = 3000,})
+			composer.gotoScene("AdminPages.inGameAdmin", {effect = "fade", time = 3000,})
 		else errorText.alpha = 1
 		end
 	end

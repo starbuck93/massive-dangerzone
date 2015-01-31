@@ -172,7 +172,7 @@ function scene:create( event )
                 native.showAlert( "Killed", "You have successfully killed the game.", {"Got it."})
                 audio.dispose(gameStartAudio)
                 audio.dispose(gameOverAudio)
-                composer.gotoScene("adminOptions")
+                composer.gotoScene("AdminPages.adminOptions")
             end
         end
     end
@@ -212,7 +212,7 @@ function scene:create( event )
     label = "Admin Options",
     fontSize = font2,
     labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-    onRelease = function() audio.dispose(gameStartAudio); audio.dispose(gameOverAudio); composer.gotoScene("adminOptions"); end,
+    onRelease = function() audio.dispose(gameStartAudio); audio.dispose(gameOverAudio); composer.gotoScene("AdminPages.adminOptions"); end,
     }
 
 

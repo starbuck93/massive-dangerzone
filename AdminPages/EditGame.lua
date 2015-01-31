@@ -34,7 +34,7 @@ function scene:create( event )
         label = "<-- back",
         fontSize = 50,
    		labelColor = { default={ 1, 1, 1}, over={ 232/255, 100/255, 37/255, 1 } },
-        onRelease = function() composer.gotoScene("adminOptions"); ads.hide() end,
+        onRelease = function() composer.gotoScene("AdminPages.adminOptions"); ads.hide() end,
     }
     location = composer.getSceneName( "previous" )
 

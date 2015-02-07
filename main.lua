@@ -48,6 +48,7 @@ function getObjectGlobal()
 				gameLengthText = tostring(e.result.gameLength)
 				TTSText = tostring(e.result.timeToStart)
 				isGameEnded = tostring(e.result.gameEnded)
+				adminPinText = tostring(e.result.adminPin)
 			end
 	end)
 end
